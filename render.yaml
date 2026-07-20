@@ -1,0 +1,22 @@
+# Render Blueprint for the Hephestos backend (FastAPI contact-form API).
+# In Render: New + -> Blueprint -> connect this GitHub repo. Render reads this file.
+# You still set the secret env vars (MONGO_URL, DB_NAME, CORS_ORIGINS) in the dashboard.
+services:
+  - type: web
+    name: hephestos-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: "pip install -r requirements-local.txt"
+    startCommand: "uvicorn server:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: USE_MOCK_DB
+        value: "false"
+      - key: MONGO_URL
+        sync: false        # set in dashboard (MongoDB Atlas connection string)
+      - key: DB_NAME
+        value: "hephestos"
+      - key: CORS_ORIGINS
+        sync: false        # set in dashboard to your Vercel URL, e.g. https://hephestos.vercel.app
+      - key: PYTHON_VERSION
+        value: "3.12.7"

@@ -1,0 +1,80 @@
+{
+  "project_info": {
+    "name": "Hephestos",
+    "tagline": "We Build What Others Can't Automate",
+    "theme": "Dark Theme",
+    "archetype": "Archetype 7 (Electric & Neon) / Archetype 5 (Luxury) Hybrid"
+  },
+  "colors": {
+    "background": {
+      "hex": "#080808",
+      "tailwind": "bg-[#080808]",
+      "description": "Near-black for depth and high-end feel."
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA"
+    },
+    "accents": {
+      "electric_blue": "#3B82F6",
+      "deep_violet": "#7C3AED",
+      "gradient": "bg-gradient-to-r from-[#3B82F6] to-[#7C3AED]"
+    },
+    "rules": "Gradients and glows MUST exclusively use the accent colors. No flat #000000 pure black; rely on #080808."
+  },
+  "typography": {
+    "font_family": "Inter",
+    "headings": {
+      "style": "font-black tracking-tighter text-white",
+      "scale": "H1 fluid up to text-5xl/text-6xl, H2 text-3xl/text-4xl"
+    },
+    "body": {
+      "style": "font-normal leading-relaxed text-gray-300",
+      "scale": "text-base sm:text-lg"
+    },
+    "rules": "Since Inter is requested, break visual monotony with maximum weight contrast: headers must be font-black with tight tracking, overlines font-bold uppercase with wide tracking."
+  },
+  "layout": {
+    "container": "max-w-7xl mx-auto px-6 lg:px-8",
+    "spacing": "Generous spacing. Main sections should use py-24 to py-32. Standard element gaps gap-6 or gap-8.",
+    "grid_system": "Bento grid approach. Ensure direct children for grid containers. Mobile-first grid-cols-1."
+  },
+  "visual_enhancers": {
+    "background_grid": "Subtle glowing grid lines: implement using CSS `background-image: linear-gradient(to right, rgba(59,130,246,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(59,130,246,0.05) 1px, transparent 1px); background-size: 40px 40px;` applied to an absolute inset wrapper.",
+    "glassmorphism": "backdrop-blur-xl bg-[#080808]/70 border-b border-white/10",
+    "glows": "Use box-shadow for interactive states: `shadow-[0_0_20px_rgba(59,130,246,0.3)]`.",
+    "particles": "tsParticles wrapper in hero for forge ember effect. Particles should float upwards, glowing warm/blue."
+  },
+  "motion_and_interactions": {
+    "scroll_animations": "Use framer-motion for scroll-triggered fade-in-up animations (`initial={{ opacity: 0, y: 20 }}` to `animate={{ opacity: 1, y: 0 }}`) on all sections and grid cards.",
+    "hover_states": "Cards lift (`-translate-y-1`) and border transitions to electric blue with a subtle glow.",
+    "buttons": "CTA buttons scale (`hover:scale-105`) and intensify their gradient glow."
+  },
+  "components": {
+    "navbar": "Sticky top (z-50), glassmorphism effect. Includes Hephestos logo text, anchor links, and 'Book a Demo' CTA.",
+    "hero": "min-h-screen relative flex items-center justify-center. Contains tsParticles canvas behind content. Massive H1 heading. Blue-violet radial gradient blur behind the text.",
+    "services": "Grid layout (grid-cols-1 md:grid-cols-2 lg:grid-cols-3). 6 cards. 1px solid border-white/10, gradient pill background behind line icons, hover lift + electric blue border glow.",
+    "industries": "Flowing wrap layout (`flex flex-wrap justify-center gap-4`). Tag pills (`px-6 py-3 rounded-full border border-white/10 text-sm hover:border-[#7C3AED] hover:shadow-[0_0_15px_rgba(124,58,237,0.4)] transition-all`).",
+    "how_it_works": "3-step horizontal flex timeline. Connector lines absolute behind nodes. Nodes are `w-12 h-12 rounded-full border-2 border-[#3B82F6] text-[#3B82F6]` with subtle glow.",
+    "why_hephestos": "3-column layout. Minimalist styling, Lucide/Phosphor line icons.",
+    "case_studies": "2 massive cards. Styling: `border-l-2 border-[#3B82F6] bg-white/[0.02] p-8`. Huge metric (`text-5xl font-black text-[#7C3AED]`).",
+    "about": "Centered text layout. Subtle icon representing the forge (flame/anvil - use lucide-react 'Flame' or similar).",
+    "contact": "Full-width dark section. Background has a large faint blue-violet radial gradient glow. Clean inputs (bg-transparent, border-white/20, focus:border-[#3B82F6]). Form state saves to DB.",
+    "footer": "Simple clean bottom bar, subtle border-t border-white/10."
+  },
+  "accessibility": {
+    "data_testids": "MANDATORY: Add `data-testid` to all major interactive elements (e.g., `data-testid=\"hero-cta\"`, `data-testid=\"contact-submit\"`).",
+    "contrast": "Ensure text opacity over dark backgrounds remains at least 70% to meet contrast guidelines."
+  },
+  "media": {
+    "image_urls": [],
+    "instructions": "NO STOCK PHOTOS. NO CLIPART. The visual identity relies ENTIRELY on the CSS glowing grid lines, tsParticles ember effect, pure typography, and high-end gradients. Icons should be React Icons or Lucide."
+  },
+  "instructions_to_main_agent": [
+    "Install `@tsparticles/react`, `tsparticles`, and `framer-motion` if not already installed.",
+    "Build the one-page landing page entirely from scratch in HTML/Tailwind. Avoid standard Shadcn card components if they restrict custom glow effects.",
+    "Ensure `tsparticles` are configured with small dot shapes, upwards 'out' mode, and glowing colors to mimic the 'forge embers'.",
+    "Include a radial gradient blurred blob absolutely positioned in the center of the hero section behind the text (e.g. `w-[500px] h-[500px] bg-gradient-to-r from-blue-500/20 to-violet-500/20 blur-[100px]`).",
+    "Ensure the contact form captures inputs properly, as requested ('stored to database' or stubbed appropriately)."
+  ]
+}
