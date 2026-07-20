@@ -31,7 +31,7 @@ export default function Home() {
   }, [location.hash]);
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white antialiased">
+    <div className="min-h-screen text-white antialiased">
       {!location.hash && <Preloader done={ready} />}
       <Navbar startDelay={ready ? 0.1 : 0} />
       <main>

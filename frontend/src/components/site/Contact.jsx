@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { Loader2, ArrowRight } from "lucide-react";
@@ -54,7 +55,6 @@ export const Contact = ({ defaultIndustry = "" }) => {
 
   return (
     <section id="contact" data-testid="contact-section" className="relative py-24 lg:py-32 px-6 lg:px-8 overflow-hidden">
-      <div className="absolute inset-0 animated-gradient animate-gradient-shift" />
       <div className="absolute left-1/2 top-1/2 w-[720px] h-[520px] max-w-[95vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#3B82F6]/20 to-[#7C3AED]/20 blur-[130px] pointer-events-none" />
 
       <div className="relative z-10 max-w-2xl mx-auto">
@@ -107,9 +107,9 @@ export const Contact = ({ defaultIndustry = "" }) => {
               />
               <span>
                 I agree to the processing of my data as described in the{" "}
-                <a href="#/privacy" className="text-[#3B82F6] underline hover:text-[#7C3AED]">
+                <Link to="/privacy" className="text-[#3B82F6] underline hover:text-[#7C3AED]">
                   Privacy Policy
-                </a>{" "}
+                </Link>{" "}
                 and consent to being contacted.
               </span>
             </label>

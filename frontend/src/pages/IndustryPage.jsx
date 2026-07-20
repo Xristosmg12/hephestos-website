@@ -33,7 +33,7 @@ export default function IndustryPage() {
   if (!industry) return <Navigate to="/" replace />;
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white antialiased">
+    <div className="min-h-screen text-white antialiased">
       <Navbar startDelay={0.05} />
 
       {/* Hero */}

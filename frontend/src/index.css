@@ -81,6 +81,62 @@ code { font-family: source-code-pro, Menlo, Monaco, monospace; }
     background-size: 300% 300%;
 }
 
+/* ===== Global animated site background ===== */
+.site-bg-grid {
+    background-image:
+        linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(124, 58, 237, 0.045) 1px, transparent 1px);
+    background-size: 62px 62px;
+    mask-image: radial-gradient(ellipse 110% 90% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.35) 55%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 110% 90% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.35) 55%, transparent 100%);
+    opacity: 0.55;
+}
+
+.site-bg-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(120px);
+    will-change: transform;
+}
+.site-bg-blob--blue {
+    width: 46vw; height: 46vw; max-width: 640px; max-height: 640px;
+    left: -8vw; top: 2vh;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.45), transparent 68%);
+    animation: bg-drift-a 26s ease-in-out infinite;
+}
+.site-bg-blob--violet {
+    width: 52vw; height: 52vw; max-width: 720px; max-height: 720px;
+    right: -12vw; top: 32vh;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.42), transparent 68%);
+    animation: bg-drift-b 32s ease-in-out infinite;
+}
+.site-bg-blob--cyan {
+    width: 40vw; height: 40vw; max-width: 560px; max-height: 560px;
+    left: 22vw; bottom: -14vh;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.22), transparent 70%);
+    animation: bg-drift-c 38s ease-in-out infinite;
+}
+@keyframes bg-drift-a {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(7vw, 6vh) scale(1.12); }
+}
+@keyframes bg-drift-b {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-6vw, -5vh) scale(1.1); }
+}
+@keyframes bg-drift-c {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-5vw, -8vh) scale(1.15); }
+}
+
+.site-bg-vignette {
+    background: radial-gradient(ellipse 120% 85% at 50% 0%, transparent 42%, rgba(8, 8, 8, 0.55) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-bg-blob { animation: none !important; }
+}
+
 /* Shimmer sweep for service cards */
 .shimmer-sweep::before {
     content: '';

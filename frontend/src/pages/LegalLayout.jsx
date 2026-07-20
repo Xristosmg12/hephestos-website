@@ -16,7 +16,7 @@ export const LegalLayout = ({ title, updated, children }) => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="min-h-screen bg-[#080808] text-white antialiased">
+    <div className="min-h-screen text-white antialiased">
       <Navbar startDelay={0.05} />
       <main className="max-w-3xl mx-auto px-6 lg:px-8 pt-32 pb-24">
         <Link to="/" data-testid="legal-back" className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors mb-8">

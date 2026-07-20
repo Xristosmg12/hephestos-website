@@ -40,7 +40,7 @@ export const Navbar = ({ startDelay = 0 }) => {
     return () => observer.disconnect();
   }, [onHome]);
 
-  const hrefFor = (id) => (onHome ? `#${id}` : `/#${id}`);
+  const hrefFor = (id) => (onHome ? `#${id}` : `${process.env.PUBLIC_URL}/#${id}`);
 
   return (
     <header
