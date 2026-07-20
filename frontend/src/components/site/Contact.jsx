@@ -5,7 +5,9 @@ import { Loader2, ArrowRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { industries } from "../../data/industries";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+// Contact submissions are emailed via FormSubmit (no backend/database needed).
+// Change this address to wherever you want inquiries delivered.
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/hephestos.solutions@gmail.com";
 
 const empty = { full_name: "", company_name: "", industry: "", email: "", automate: "", website: "" };
 
@@ -27,16 +29,21 @@ export const Contact = ({ defaultIndustry = "" }) => {
     }
     setLoading(true);
     try {
-      await axios.post(`${API}/contact`, { ...form, consent });
+      await axios.post(FORM_ENDPOINT, {
+        name: form.full_name,
+        company: form.company_name,
+        industry: form.industry,
+        email: form.email,
+        message: form.automate,
+        _subject: `New Hephestos inquiry — ${form.company_name}`,
+        _template: "table",
+        _honey: form.website, // honeypot (bots fill this; humans don't)
+      });
       toast.success("Message forged. We'll be in touch shortly.");
       setForm({ ...empty, industry: defaultIndustry });
       setConsent(false);
     } catch (err) {
-      if (err?.response?.status === 429) {
-        toast.error("Too many requests. Please try again in a few minutes.");
-      } else {
-        toast.error("Something went wrong. Please try again.");
-      }
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -100,7 +107,7 @@ export const Contact = ({ defaultIndustry = "" }) => {
               />
               <span>
                 I agree to the processing of my data as described in the{" "}
-                <a href="/privacy" className="text-[#3B82F6] underline hover:text-[#7C3AED]">
+                <a href="#/privacy" className="text-[#3B82F6] underline hover:text-[#7C3AED]">
                   Privacy Policy
                 </a>{" "}
                 and consent to being contacted.

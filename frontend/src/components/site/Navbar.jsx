@@ -57,7 +57,7 @@ export const Navbar = ({ startDelay = 0 }) => {
           data-testid="nav-logo"
           className="flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-white"
         >
-          <img src="/hs-mark.png" alt="Hephestos" className="h-8 w-8 object-contain logo-bright" />
+          <img src={`${process.env.PUBLIC_URL}/hs-mark.png`} alt="Hephestos" className="h-8 w-8 object-contain logo-bright" />
           Hephestos
         </Link>
 

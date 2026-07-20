@@ -18,7 +18,7 @@ export const Preloader = ({ done }) => (
           className="flex items-center gap-3"
         >
           <motion.img
-            src="/hs-mark.png"
+            src={`${process.env.PUBLIC_URL}/hs-mark.png`}
             alt="Hephestos"
             className="h-10 w-10 object-contain logo-bright"
             animate={{

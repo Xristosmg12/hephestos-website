@@ -18,7 +18,7 @@ export const Footer = () => (
     <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
       <div>
         <Link to="/" className="flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-white">
-          <img src="/hs-mark.png" alt="Hephestos" className="h-8 w-8 object-contain logo-bright" />
+          <img src={`${process.env.PUBLIC_URL}/hs-mark.png`} alt="Hephestos" className="h-8 w-8 object-contain logo-bright" />
           Hephestos
         </Link>
         <p className="mt-3 text-sm text-gray-500 max-w-xs">

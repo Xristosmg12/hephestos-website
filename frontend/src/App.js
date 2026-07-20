@@ -1,5 +1,5 @@
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
 import { CustomCursor } from "@/components/site/CustomCursor";
 import { ScrollProgress } from "@/components/site/ScrollProgress";
@@ -12,7 +12,7 @@ import Terms from "@/pages/Terms";
 function App() {
   return (
     <div className="App bg-[#080808] text-white antialiased">
-      <BrowserRouter>
+      <HashRouter>
         <CustomCursor />
         <ScrollProgress />
         <Toaster position="top-center" theme="dark" richColors />
@@ -23,7 +23,7 @@ function App() {
           <Route path="/terms" element={<Terms />} />
         </Routes>
         <CookieConsent />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
