@@ -40,14 +40,20 @@ export const SiteBackground = () => {
       if (grid) grid.style.opacity = "0";
     };
 
+    let lastMaskX = -1;
+    let lastMaskY = -1;
     const loop = () => {
       ox += (tx - ox) * 0.14;
       oy += (ty - oy) * 0.14;
       if (orb) orb.style.transform = `translate(${ox}px, ${oy}px) translate(-50%, -50%)`;
-      if (grid) {
+      // Only recompute the (expensive) mask when the cursor actually moves —
+      // never while the user is just scrolling.
+      if (grid && (tx !== lastMaskX || ty !== lastMaskY)) {
         const mask = `radial-gradient(240px circle at ${tx}px ${ty}px, #000 0%, rgba(0,0,0,0.35) 46%, transparent 72%)`;
         grid.style.webkitMaskImage = mask;
         grid.style.maskImage = mask;
+        lastMaskX = tx;
+        lastMaskY = ty;
       }
       raf = requestAnimationFrame(loop);
     };
@@ -68,8 +74,9 @@ export const SiteBackground = () => {
       data-testid="site-background"
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
     >
-      {/* Slowly shifting blue-violet gradient wash */}
-      <div className="absolute inset-0 animated-gradient animate-gradient-shift opacity-70" />
+      {/* Blue-violet gradient wash (motion comes from the drifting blobs below,
+          so this stays static to avoid a constant full-screen repaint) */}
+      <div className="absolute inset-0 animated-gradient opacity-70" />
 
       {/* Faint schematic grid, fading toward the edges */}
       <div className="site-bg-grid absolute inset-0" />

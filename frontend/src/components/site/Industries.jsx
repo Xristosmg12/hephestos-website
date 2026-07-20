@@ -4,6 +4,14 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal, TextReveal, Overline } from "./Reveal";
 import { industries } from "../../data/industries";
 
+// The cards are only ~340px wide, so request a much smaller image than the
+// full-size hero version (works for both Pexels and Unsplash URLs).
+const cardImg = (url) =>
+  url
+    .replace(/w=\d+/, "w=640")
+    .replace(/h=\d+/, "h=420")
+    .replace(/dpr=\d+/, "dpr=1");
+
 export const Industries = () => (
   <section id="industries" data-testid="industries-section" className="relative py-24 lg:py-32 px-6 lg:px-8">
     <div className="max-w-7xl mx-auto">
@@ -32,9 +40,10 @@ export const Industries = () => (
               className="group relative block h-40 overflow-hidden rounded-2xl border border-white/10 transition-all duration-300 hover:border-[#3B82F6] hover:shadow-[0_0_30px_rgba(59,130,246,0.35)] hover:scale-[1.03]"
             >
               <img
-                src={ind.image}
+                src={cardImg(ind.image)}
                 alt={ind.name}
                 loading="lazy"
+                decoding="async"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/60 to-[#080808]/20" />

@@ -47,7 +47,7 @@ export const Navbar = ({ startDelay = 0 }) => {
       data-testid="navbar"
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "backdrop-blur-xl bg-[#080808]/70 border-b border-white/10"
+          ? "backdrop-blur-md bg-[#080808]/85 border-b border-white/10"
           : "bg-transparent border-b border-transparent"
       }`}
     >

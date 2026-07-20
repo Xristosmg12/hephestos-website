@@ -34,7 +34,7 @@ export const Services = () => (
               transition={{ duration: 0.55, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-[#3B82F6]/40 to-[#7C3AED]/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_32px_rgba(59,130,246,0.3)]"
             >
-              <div className="shimmer-sweep relative h-full overflow-hidden rounded-2xl bg-[#0d0d0f]/80 backdrop-blur-xl p-7">
+              <div className="shimmer-sweep relative h-full overflow-hidden rounded-2xl bg-[#101014]/92 p-7">
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#7C3AED]/30 to-[#3B82F6]/30 border border-white/10">
                   <Icon className="h-6 w-6 text-white" strokeWidth={1.8} />
                 </div>
