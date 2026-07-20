@@ -1,11 +1,9 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 export const Hero = ({ ready }) => {
   const ref = useRef(null);
-  const gridRef = useRef(null);
-  const orbRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -14,50 +12,6 @@ export const Hero = ({ ready }) => {
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-
-  // Interactive mouse effect: glowing grid patch + colour orb that follow the cursor
-  useEffect(() => {
-    const section = ref.current;
-    const grid = gridRef.current;
-    const orb = orbRef.current;
-    if (!section) return;
-
-    let tx = window.innerWidth / 2;
-    let ty = window.innerHeight / 2;
-    let ox = tx;
-    let oy = ty;
-    let raf;
-    let inside = false;
-
-    const onMove = (e) => {
-      const r = section.getBoundingClientRect();
-      inside = e.clientY >= r.top && e.clientY <= r.bottom;
-      tx = e.clientX - r.left;
-      ty = e.clientY - r.top;
-    };
-
-    const loop = () => {
-      ox += (tx - ox) * 0.12;
-      oy += (ty - oy) * 0.12;
-      const mask = `radial-gradient(200px circle at ${tx}px ${ty}px, #000 0%, rgba(0,0,0,0.35) 45%, transparent 70%)`;
-      if (grid) {
-        grid.style.opacity = inside ? "1" : "0";
-        grid.style.webkitMaskImage = mask;
-        grid.style.maskImage = mask;
-      }
-      if (orb) {
-        orb.style.opacity = inside ? "1" : "0";
-        orb.style.transform = `translate(${ox}px, ${oy}px) translate(-50%, -50%)`;
-      }
-      raf = requestAnimationFrame(loop);
-    };
-    loop();
-    window.addEventListener("mousemove", onMove);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("mousemove", onMove);
-    };
-  }, []);
 
   const cascade = {
     hidden: { opacity: 0, y: 28 },
@@ -77,14 +31,6 @@ export const Hero = ({ ready }) => {
     >
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <div className="absolute inset-0 forge-grid" />
-        {/* Interactive grid patch that lights up around the cursor */}
-        <div ref={gridRef} className="hero-igrid absolute inset-0 transition-opacity duration-300" style={{ opacity: 0 }} />
-        {/* Colour orb that trails the cursor */}
-        <div
-          ref={orbRef}
-          className="hero-orb pointer-events-none absolute left-0 top-0 transition-opacity duration-500"
-          style={{ opacity: 0 }}
-        />
         <div className="absolute left-1/2 top-1/2 w-[620px] h-[620px] max-w-[92vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#3B82F6]/25 to-[#7C3AED]/25 blur-[130px] animate-radial-pulse pointer-events-none" />
       </motion.div>
 

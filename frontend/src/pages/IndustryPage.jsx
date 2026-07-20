@@ -108,7 +108,7 @@ export default function IndustryPage() {
                   Ready to automate your {industry.name} business?
                 </h2>
                 <a
-                  href="mailto:hephestos.solutions@gmail.com?subject=Get%20a%20Quote"
+                  href="#contact"
                   data-testid="industry-cta"
                   className="group mt-8 inline-flex items-center gap-2 rounded-full bg-[#3B82F6] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_24px_rgba(59,130,246,0.4)] hover:scale-105 hover:shadow-[0_0_34px_rgba(59,130,246,0.6)] transition-all"
                 >

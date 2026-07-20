@@ -78,7 +78,7 @@ export const Navbar = ({ startDelay = 0 }) => {
             </motion.a>
           ))}
           <motion.a
-            href="mailto:hephestos.solutions@gmail.com?subject=Get%20a%20Quote"
+            href={hrefFor("contact")}
             data-testid="nav-book-demo"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ export const Navbar = ({ startDelay = 0 }) => {
             </a>
           ))}
           <a
-            href="mailto:hephestos.solutions@gmail.com?subject=Get%20a%20Quote"
+            href={hrefFor("contact")}
             onClick={() => setOpen(false)}
             className="rounded-full bg-[#3B82F6] px-5 py-3 text-center text-sm font-semibold text-white"
           >
