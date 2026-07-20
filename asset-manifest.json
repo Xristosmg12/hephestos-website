@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "./static/css/main.4fe3eb43.css",
-    "main.js": "./static/js/main.e6d89465.js",
-    "index.html": "./index.html",
-    "main.4fe3eb43.css.map": "./static/css/main.4fe3eb43.css.map",
-    "main.e6d89465.js.map": "./static/js/main.e6d89465.js.map"
+    "main.css": "/hephestos-website/static/css/main.6487505c.css",
+    "main.js": "/hephestos-website/static/js/main.68b44a64.js",
+    "index.html": "/hephestos-website/index.html",
+    "main.6487505c.css.map": "/hephestos-website/static/css/main.6487505c.css.map",
+    "main.68b44a64.js.map": "/hephestos-website/static/js/main.68b44a64.js.map"
   },
   "entrypoints": [
-    "static/css/main.4fe3eb43.css",
-    "static/js/main.e6d89465.js"
+    "static/css/main.6487505c.css",
+    "static/js/main.68b44a64.js"
   ]
 }
