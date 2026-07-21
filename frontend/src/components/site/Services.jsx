@@ -37,7 +37,7 @@ export const Services = () => (
             className="led-row group py-7 sm:py-8"
           >
             <div className="flex gap-6 sm:gap-10">
-              <span className="ledger-key pt-1.5 transition-colors group-hover:text-bone">
+              <span className="ledger-key pt-1.5 transition-colors group-hover:text-steel-bright">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="min-w-0">

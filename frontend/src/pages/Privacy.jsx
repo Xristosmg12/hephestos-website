@@ -14,7 +14,7 @@ export default function Privacy() {
         <p>
           The data controller responsible for your personal data is Hephestos. For any
           privacy-related questions or to exercise your rights, contact us at{" "}
-          <a href="mailto:hephestos.solutions@gmail.com" className="text-bone underline underline-offset-2">
+          <a href="mailto:hephestos.solutions@gmail.com" className="text-steel-bright underline underline-offset-2">
             hephestos.solutions@gmail.com
           </a>.
         </p>
@@ -82,7 +82,7 @@ export default function Privacy() {
         </ul>
         <p>
           To exercise any of these rights, email{" "}
-          <a href="mailto:hephestos.solutions@gmail.com" className="text-bone underline underline-offset-2">
+          <a href="mailto:hephestos.solutions@gmail.com" className="text-steel-bright underline underline-offset-2">
             hephestos.solutions@gmail.com
           </a>.
         </p>

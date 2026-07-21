@@ -11,8 +11,8 @@ export const About = () => (
 
       <Reveal delay={0.1}>
         <blockquote className="mt-16 max-w-4xl font-display text-[clamp(1.75rem,4.4vw,3.5rem)] leading-[1.06] tracking-[-0.03em] text-bone">
-          <span className="text-bone">“</span>Named after the god of the forge — we build with
-          the same obsession for precision.<span className="text-bone">”</span>
+          <span className="text-steel-bright">“</span>Named after the god of the forge — we build with
+          the same obsession for precision.<span className="text-steel-bright">”</span>
         </blockquote>
       </Reveal>
 

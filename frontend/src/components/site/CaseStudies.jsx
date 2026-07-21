@@ -15,7 +15,7 @@ const CaseRow = ({ c, index }) => {
       data-testid={`case-card-${index}`}
       className="led-row group grid grid-cols-1 md:grid-cols-12 items-start gap-6 md:gap-10 py-12"
     >
-      <span className="ledger-key md:col-span-3 md:pt-6 transition-colors group-hover:text-bone">
+      <span className="ledger-key md:col-span-3 md:pt-6 transition-colors group-hover:text-steel-bright">
         {c.tag}
       </span>
 

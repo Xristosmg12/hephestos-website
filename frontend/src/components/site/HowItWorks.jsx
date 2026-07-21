@@ -32,7 +32,7 @@ const SEGMENT_WIDTH = "calc(100% + 2.5rem)"; // gap-10 = 2.5rem
 const Node = ({ num, index }) => (
   <div
     data-node={index}
-    className="relative z-10 flex h-11 w-11 items-center justify-center border border-bone bg-ink font-mono text-xs font-semibold text-bone"
+    className="relative z-10 flex h-11 w-11 items-center justify-center border border-steel-bright bg-ink font-mono text-xs font-semibold text-steel-bright"
   >
     {num}
   </div>
@@ -77,7 +77,7 @@ export const HowItWorks = () => {
                     style={{ left: NODE_CENTER, width: SEGMENT_WIDTH }}
                   >
                     <span
-                      className={`hf-line-fill block h-full w-full bg-bone ${inView ? "drawn" : ""}`}
+                      className={`hf-line-fill block h-full w-full bg-steel-bright ${inView ? "drawn" : ""}`}
                       style={{ animationDelay: `${i * 0.6}s` }}
                     />
                   </span>

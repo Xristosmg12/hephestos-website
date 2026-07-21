@@ -72,7 +72,7 @@ export const Hero = ({ ready }) => {
               <a
                 href="#contact"
                 data-testid="hero-get-contact"
-                className="group inline-flex items-center justify-center gap-3 bg-bone px-8 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-ink transition-colors hover:bg-white"
+                className="group inline-flex items-center justify-center gap-3 bg-steel px-8 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-steel-hover"
               >
                 Get in Contact
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -124,7 +124,7 @@ export const Hero = ({ ready }) => {
                     className="ledger-key flex shrink-0 items-center gap-6 px-6"
                   >
                     {ind.name}
-                    <span className="text-bone">/</span>
+                    <span className="text-steel-bright">/</span>
                   </span>
                 ))}
               </div>

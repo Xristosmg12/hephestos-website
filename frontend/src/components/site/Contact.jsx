@@ -14,7 +14,7 @@ const empty = { full_name: "", company_name: "", industry: "", email: "", automa
 
 // Flat, unboxed fields: a hairline underneath, brightens when focused.
 const fieldCls =
-  "w-full border-b border-[var(--line-strong)] bg-transparent py-3 text-base text-bone placeholder:text-[var(--ash-dim)] focus:border-bone focus:outline-none transition-colors";
+  "w-full border-b border-[var(--line-strong)] bg-transparent py-3 text-base text-bone placeholder:text-[var(--ash-dim)] focus:border-steel-bright focus:outline-none transition-colors";
 
 const Field = ({ label, children }) => (
   <label className="block">
@@ -101,7 +101,7 @@ export const Contact = ({ defaultIndustry = "" }) => {
                 <dd className="text-sm">
                   <a
                     href="mailto:hephestos.solutions@gmail.com"
-                    className="wipe text-bone"
+                    className="wipe text-steel-bright"
                   >
                     hephestos.solutions@gmail.com
                   </a>
@@ -195,11 +195,11 @@ export const Contact = ({ defaultIndustry = "" }) => {
                   data-testid="contact-consent"
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#E8EAED]"
+                  className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#1E4E8C]"
                 />
                 <span>
                   I agree to the processing of my data as described in the{" "}
-                  <Link to="/privacy" className="text-bone underline underline-offset-2">
+                  <Link to="/privacy" className="text-steel-bright underline underline-offset-2">
                     Privacy Policy
                   </Link>{" "}
                   and consent to being contacted.
@@ -210,7 +210,7 @@ export const Contact = ({ defaultIndustry = "" }) => {
                 type="submit"
                 data-testid="contact-submit"
                 disabled={loading}
-                className="group flex w-full items-center justify-center gap-3 bg-bone px-8 py-5 text-sm font-semibold uppercase tracking-[0.14em] text-ink transition-colors hover:bg-white disabled:opacity-60"
+                className="group flex w-full items-center justify-center gap-3 bg-steel px-8 py-5 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-steel-hover disabled:opacity-60"
               >
                 {loading ? (
                   <>

@@ -52,7 +52,7 @@ export const TextReveal = ({ text, className = "", as: Tag = "h2" }) => {
 /* Mono metadata key — the ledger voice */
 export const Overline = ({ children, index }) => (
   <p className="ledger-key flex items-center gap-3 mb-5">
-    {index && <span className="text-bone">{index}</span>}
+    {index && <span className="text-steel-bright">{index}</span>}
     <span className="h-px w-8 bg-[var(--line-strong)]" />
     {children}
   </p>

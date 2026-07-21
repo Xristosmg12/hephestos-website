@@ -27,7 +27,7 @@ export const Preloader = ({ done }) => (
         </motion.div>
 
         <motion.div
-          className="mt-6 h-px w-40 origin-left bg-bone"
+          className="mt-6 h-px w-40 origin-left bg-steel-bright"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
