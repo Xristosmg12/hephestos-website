@@ -51,11 +51,11 @@ module.exports = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        /* Forge Ledger palette — one accent, no gradients */
-        ink: { DEFAULT: '#0B0B0C', raised: '#121214', sunk: '#070708' },
-        bone: '#EDE8DF',
-        ash: { DEFAULT: '#8F8981', dim: '#5E5A55' },
-        ember: { DEFAULT: '#E2521B', dim: '#A8330C' },
+        /* Forge Ledger palette — monochrome, neutral, no gradients.
+           There is no colour accent: bone IS the accent. */
+        ink: { DEFAULT: '#0B0B0D', raised: '#131417', sunk: '#08080A' },
+        bone: { DEFAULT: '#E8EAED', dim: '#C9CDD3' },
+        ash: { DEFAULT: '#8A8D93', dim: '#5C5F66' },
       },
       keyframes: {
         'accordion-down': { from: { height: '0' }, to: { height: 'var(--radix-accordion-content-height)' } },

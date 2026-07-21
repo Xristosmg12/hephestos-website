@@ -42,7 +42,7 @@ export const Hero = ({ ready }) => {
               {["We Build", "What Others", "Can't Automate"].map((line, i) => (
                 <span key={line} className="block overflow-hidden">
                   <motion.span
-                    className={`block ${i === 2 ? "text-ember" : ""}`}
+                    className={`block ${i === 2 ? "text-bone" : ""}`}
                     initial={{ y: "106%" }}
                     animate={ready ? { y: 0 } : { y: "106%" }}
                     transition={{
@@ -72,7 +72,7 @@ export const Hero = ({ ready }) => {
               <a
                 href="#contact"
                 data-testid="hero-get-contact"
-                className="group inline-flex items-center justify-center gap-3 bg-ember px-8 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-ember-dim"
+                className="group inline-flex items-center justify-center gap-3 bg-bone px-8 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-ink transition-colors hover:bg-white"
               >
                 Get in Contact
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -124,7 +124,7 @@ export const Hero = ({ ready }) => {
                     className="ledger-key flex shrink-0 items-center gap-6 px-6"
                   >
                     {ind.name}
-                    <span className="text-ember">/</span>
+                    <span className="text-bone">/</span>
                   </span>
                 ))}
               </div>

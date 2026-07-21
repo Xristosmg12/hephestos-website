@@ -32,12 +32,12 @@ export const CookieConsent = () => {
           className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-[80] border border-[var(--line-strong)] bg-ink-raised p-5"
         >
           <div className="flex items-start gap-3">
-            <Cookie className="h-5 w-5 text-ember flex-shrink-0 mt-0.5" />
+            <Cookie className="h-5 w-5 text-bone flex-shrink-0 mt-0.5" />
             <div>
               <p className="text-sm text-ash leading-relaxed">
                 We use only essential cookies to make this site work. We don't track
                 you or sell your data. See our{" "}
-                <Link to="/privacy" className="text-ember underline underline-offset-2">
+                <Link to="/privacy" className="text-bone underline underline-offset-2">
                   Privacy Policy
                 </Link>
                 .
@@ -46,7 +46,7 @@ export const CookieConsent = () => {
                 <button
                   data-testid="cookie-accept"
                   onClick={() => decide("accepted")}
-                  className="bg-ember px-5 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-ember-dim"
+                  className="bg-bone px-5 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-ink transition-colors hover:bg-white"
                 >
                   Accept
                 </button>

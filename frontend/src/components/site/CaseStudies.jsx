@@ -15,7 +15,7 @@ const CaseRow = ({ c, index }) => {
       data-testid={`case-card-${index}`}
       className="led-row group grid grid-cols-1 md:grid-cols-12 items-start gap-6 md:gap-10 py-12"
     >
-      <span className="ledger-key md:col-span-3 md:pt-6 transition-colors group-hover:text-ember">
+      <span className="ledger-key md:col-span-3 md:pt-6 transition-colors group-hover:text-bone">
         {c.tag}
       </span>
 
@@ -24,7 +24,9 @@ const CaseRow = ({ c, index }) => {
         <span className="font-display text-bone text-[clamp(4rem,11vw,8.5rem)] leading-[0.85] tabular-nums">
           {count}
         </span>
-        <span className="font-display text-ember text-[clamp(2rem,5vw,4rem)] leading-none">
+        {/* Unit sits back from the figure — in a monochrome system the
+            hierarchy has to come from value, not colour */}
+        <span className="font-display text-ash text-[clamp(2rem,5vw,4rem)] leading-none">
           {c.suffix}
         </span>
       </div>

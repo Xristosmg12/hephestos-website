@@ -66,7 +66,7 @@ export default function Terms() {
       <Section title="8. Contact">
         <p>
           Questions about these Terms? Email{" "}
-          <a href="mailto:hephestos.solutions@gmail.com" className="text-ember underline underline-offset-2">
+          <a href="mailto:hephestos.solutions@gmail.com" className="text-bone underline underline-offset-2">
             hephestos.solutions@gmail.com
           </a>.
         </p>

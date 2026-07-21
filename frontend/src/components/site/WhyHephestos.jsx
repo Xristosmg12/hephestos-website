@@ -32,7 +32,7 @@ export const WhyHephestos = () => (
             transition={{ duration: 0.55, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="led-row group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10 py-9"
           >
-            <span className="ledger-key md:col-span-1 md:pt-3 transition-colors group-hover:text-ember">
+            <span className="ledger-key md:col-span-1 md:pt-3 transition-colors group-hover:text-bone">
               {String(i + 1).padStart(2, "0")}
             </span>
             <h3 className="md:col-span-6 font-display text-3xl sm:text-4xl leading-[1.05] text-bone">

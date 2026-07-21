@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-/* Cold open: the wordmark sits on the ink, an ember rule strikes across, lifts away. */
+/* Cold open: the wordmark sits on the ink, a rule strikes across, lifts away. */
 export const Preloader = ({ done }) => (
   <AnimatePresence>
     {!done && (
@@ -27,7 +27,7 @@ export const Preloader = ({ done }) => (
         </motion.div>
 
         <motion.div
-          className="mt-6 h-px w-40 origin-left bg-ember"
+          className="mt-6 h-px w-40 origin-left bg-bone"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}

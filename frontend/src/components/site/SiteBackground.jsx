@@ -2,7 +2,7 @@ import { useMemo } from "react";
 
 /*
  * Global background — the forge floor. A fine machine grid, heat pooling at the
- * base of the viewport, and sparse embers drifting up from it. No blobs, no
+ * base of the viewport, and sparse motes drifting up from it. No blobs, no
  * aurora, no cursor-follow glow: the ambiance is structural, not decorative.
  * Purely presentational: pointer-events-none, aria-hidden, and fully static
  * under prefers-reduced-motion (see index.css).

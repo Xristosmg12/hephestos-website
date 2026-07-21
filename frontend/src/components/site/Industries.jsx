@@ -51,7 +51,7 @@ export const Industries = () => (
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/25" />
 
-              <span className="ledger-key relative z-10 transition-colors group-hover:text-ember">
+              <span className="ledger-key relative z-10 transition-colors group-hover:text-bone">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="relative z-10 mt-2 font-display text-lg sm:text-xl leading-tight text-bone">
@@ -59,7 +59,7 @@ export const Industries = () => (
               </h3>
 
               {/* Ember rule wipes across the foot of the frame on hover */}
-              <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-ember transition-transform duration-500 group-hover:scale-x-100" />
+              <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-bone transition-transform duration-500 group-hover:scale-x-100" />
             </Link>
           </motion.div>
         ))}

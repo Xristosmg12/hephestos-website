@@ -15,7 +15,7 @@ const ResultMetric = ({ r, index }) => {
   return (
     <div ref={ref} className="rule pt-6">
       <span className="ledger-key">{String(index + 1).padStart(2, "0")}</span>
-      <div className="mt-3 font-display text-[clamp(2.5rem,6vw,4rem)] leading-[0.9] text-ember tabular-nums">
+      <div className="mt-3 font-display text-[clamp(2.5rem,6vw,4rem)] leading-[0.9] text-bone tabular-nums">
         {r.zeroText ? r.zeroText : `${r.prefix || ""}${count}${r.suffix || ""}`}
       </div>
       <p className="mt-4 text-sm leading-relaxed text-ash">{r.label}</p>
@@ -91,7 +91,7 @@ export default function IndustryPage() {
             {industry.automations.map((a, i) => (
               <Reveal key={i} delay={i * 0.06}>
                 <div className="led-row group flex gap-6 sm:gap-10 py-6">
-                  <span className="ledger-key pt-1 transition-colors group-hover:text-ember">
+                  <span className="ledger-key pt-1 transition-colors group-hover:text-bone">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-bone">{a}</p>
@@ -126,7 +126,7 @@ export default function IndustryPage() {
               <a
                 href="#contact"
                 data-testid="industry-cta"
-                className="group inline-flex shrink-0 items-center gap-3 bg-ember px-8 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-ember-dim"
+                className="group inline-flex shrink-0 items-center gap-3 bg-bone px-8 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-ink transition-colors hover:bg-white"
               >
                 Get a Quote
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

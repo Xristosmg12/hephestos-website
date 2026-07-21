@@ -195,23 +195,23 @@ export const RobotRunner = ({ active, trackRef }) => {
           <svg ref={svgRef} className="robot" width="36" height="26" viewBox="0 0 42 30" fill="none">
             {/* laptop (right of robot) */}
             <g className="laptop">
-              <rect x="19" y="20" width="15" height="2.6" rx="0.7" fill="#121214" stroke="#E2521B" strokeWidth="0.6" />
+              <rect x="19" y="20" width="15" height="2.6" rx="0.7" fill="#131417" stroke="#E8EAED" strokeWidth="0.6" />
               <g className="laptop-lid">
-                <rect x="19" y="12" width="13" height="8" rx="0.7" fill="#0B0B0C" stroke="#E2521B" strokeWidth="0.7" />
-                <rect x="19.8" y="12.8" width="11.4" height="6.4" rx="0.4" fill="#E2521B" opacity="0.55" />
+                <rect x="19" y="12" width="13" height="8" rx="0.7" fill="#0B0B0D" stroke="#E8EAED" strokeWidth="0.7" />
+                <rect x="19.8" y="12.8" width="11.4" height="6.4" rx="0.4" fill="#E8EAED" opacity="0.55" />
                 <rect className="laptop-cursor" x="21" y="14" width="0.9" height="3" fill="#ffffff" />
               </g>
             </g>
             {/* arms */}
-            <rect className="arm-l" x="3" y="11" width="1.7" height="6" rx="0.8" fill="#E2521B" />
-            <rect className="arm-r" x="14.8" y="11" width="1.7" height="6" rx="0.8" fill="#E2521B" />
+            <rect className="arm-l" x="3" y="11" width="1.7" height="6" rx="0.8" fill="#E8EAED" />
+            <rect className="arm-r" x="14.8" y="11" width="1.7" height="6" rx="0.8" fill="#E8EAED" />
             {/* legs */}
-            <rect className="leg-l" x="7.2" y="20" width="1.8" height="5.5" rx="0.8" fill="#E2521B" />
-            <rect className="leg-r" x="11.2" y="20" width="1.8" height="5.5" rx="0.8" fill="#E2521B" />
+            <rect className="leg-l" x="7.2" y="20" width="1.8" height="5.5" rx="0.8" fill="#E8EAED" />
+            <rect className="leg-r" x="11.2" y="20" width="1.8" height="5.5" rx="0.8" fill="#E8EAED" />
             {/* body */}
-            <rect x="5.5" y="10.5" width="9" height="9.5" rx="1" fill="#E2521B" />
+            <rect x="5.5" y="10.5" width="9" height="9.5" rx="1" fill="#E8EAED" />
             {/* head */}
-            <rect x="5" y="1" width="10" height="8.5" rx="1.5" fill="#8F8981" />
+            <rect x="5" y="1" width="10" height="8.5" rx="1.5" fill="#8A8D93" />
             <circle cx="8" cy="4.8" r="1.1" fill="#fff" />
             <circle cx="12" cy="4.8" r="1.1" fill="#fff" />
             <line x1="8" y1="7.2" x2="12" y2="7.2" stroke="#fff" strokeWidth="0.9" strokeLinecap="round" />

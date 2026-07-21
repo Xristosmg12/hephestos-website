@@ -54,7 +54,7 @@ export const Footer = () => (
           <p className="ledger-key">Contact</p>
           <a
             href="mailto:hephestos.solutions@gmail.com"
-            className="wipe mt-4 block w-fit text-sm text-ember"
+            className="wipe mt-4 block w-fit text-sm text-bone"
           >
             hephestos.solutions@gmail.com
           </a>

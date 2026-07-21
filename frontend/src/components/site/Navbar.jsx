@@ -73,7 +73,7 @@ export const Navbar = ({ startDelay = 0 }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: startDelay + i * 0.07, duration: 0.4 }}
               className={`font-mono text-[11px] uppercase tracking-[0.16em] transition-colors ${
-                active === l.id && onHome ? "text-ember" : "text-ash hover:text-bone"
+                active === l.id && onHome ? "text-bone" : "text-ash hover:text-bone"
               }`}
             >
               {l.label}
@@ -85,7 +85,7 @@ export const Navbar = ({ startDelay = 0 }) => {
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: startDelay + links.length * 0.07, duration: 0.4 }}
-            className="bg-ember px-5 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-ember-dim"
+            className="bg-bone px-5 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-white"
           >
             Get a Quote
           </motion.a>
@@ -120,7 +120,7 @@ export const Navbar = ({ startDelay = 0 }) => {
           <a
             href={hrefFor("contact")}
             onClick={() => setOpen(false)}
-            className="mt-6 bg-ember px-5 py-4 text-center font-mono text-xs font-semibold uppercase tracking-[0.16em] text-white"
+            className="mt-6 bg-bone px-5 py-4 text-center font-mono text-xs font-semibold uppercase tracking-[0.16em] text-ink"
           >
             Get a Quote
           </a>

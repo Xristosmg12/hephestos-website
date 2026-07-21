@@ -6,19 +6,20 @@
 
 /* ============================================================
    FORGE LEDGER — design tokens
-   Hot steel on ink. One accent (ember). Hairlines, never cards.
+   Neutral ink, monochrome. There is no colour accent: emphasis
+   comes from value (bone against ash) and from scale. Hairlines,
+   never cards.
    ============================================================ */
 :root {
-    --ink: #0B0B0C;
-    --ink-raised: #121214;
-    --ink-sunk: #070708;
-    --bone: #EDE8DF;
-    --ash: #8F8981;
-    --ash-dim: #5E5A55;
-    --line: rgba(237, 232, 223, 0.13);
-    --line-strong: rgba(237, 232, 223, 0.28);
-    --ember: #E2521B;
-    --ember-dim: #A8330C;
+    --ink: #0B0B0D;
+    --ink-raised: #131417;
+    --ink-sunk: #08080A;
+    --bone: #E8EAED;
+    --bone-dim: #C9CDD3;
+    --ash: #8A8D93;
+    --ash-dim: #5C5F66;
+    --line: rgba(232, 234, 237, 0.13);
+    --line-strong: rgba(232, 234, 237, 0.28);
 }
 
 html {
@@ -42,12 +43,12 @@ body {
 
 code, .font-mono { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; }
 
-::selection { background: var(--ember); color: #fff; }
+::selection { background: var(--bone); color: var(--ink); }
 
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--ink-sunk); }
 ::-webkit-scrollbar-thumb { background: #232326; }
-::-webkit-scrollbar-thumb:hover { background: var(--ember); }
+::-webkit-scrollbar-thumb:hover { background: var(--bone); }
 
 .font-display {
     font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
@@ -56,7 +57,7 @@ code, .font-mono { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
 }
 
 /* Brighten dark-teal brand logos so they read on the near-black background */
-.logo-bright { filter: brightness(1.7) saturate(0.15) sepia(0.25); }
+.logo-bright { filter: brightness(1.9) grayscale(1); }
 
 /* ===== Ledger primitives ===== */
 
@@ -77,26 +78,26 @@ code, .font-mono { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
 /* Milled steel plate: flat, matte, no glass, no blur */
 .plate { background: var(--ink-raised); }
 
-/* Ember underline that wipes in on hover */
+/* Underline that wipes in on hover */
 .wipe { position: relative; }
 .wipe::after {
     content: '';
     position: absolute;
     left: 0; bottom: -3px;
     height: 1px; width: 100%;
-    background: var(--ember);
+    background: var(--bone);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .wipe:hover::after { transform: scaleX(1); }
 
-/* Ledger row: hairline-separated, indents toward the ember on hover */
+/* Ledger row: hairline-separated, indents slightly on hover */
 .led-row {
     border-top: 1px solid var(--line);
     transition: background 0.35s ease, padding-left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.led-row:hover { background: rgba(237, 232, 223, 0.022); }
+.led-row:hover { background: rgba(232, 234, 237, 0.022); }
 @media (min-width: 768px) {
     .led-row:hover { padding-left: 18px; }
 }
@@ -104,14 +105,14 @@ code, .font-mono { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
 /* Fine machine grid — structural, not a glow */
 .mill-grid {
     background-image:
-        linear-gradient(to right, rgba(237, 232, 223, 0.045) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(237, 232, 223, 0.045) 1px, transparent 1px);
+        linear-gradient(to right, rgba(232, 234, 237, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(232, 234, 237, 0.045) 1px, transparent 1px);
     background-size: 88px 88px;
 }
 
-/* Heat gradient at the very bottom of the page — the forge, not a blob */
+/* Neutral lift at the base of the page — depth, not a colour wash */
 .heat-floor {
-    background: linear-gradient(to top, rgba(226, 82, 27, 0.16) 0%, rgba(226, 82, 27, 0.05) 34%, transparent 72%);
+    background: linear-gradient(to top, rgba(232, 234, 237, 0.05) 0%, rgba(232, 234, 237, 0.018) 34%, transparent 72%);
 }
 
 /* Industry ticker */
@@ -129,20 +130,20 @@ code, .font-mono { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
     -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
 
-/* Sparks drifting up from the forge floor — sparse, physical, not ambient glow */
+/* Faint motes drifting up from the floor — texture, not ambient glow */
 .spark {
     position: absolute;
     bottom: -10px;
     width: 2px; height: 2px;
     border-radius: 9999px;
-    background: var(--ember);
+    background: var(--bone);
     opacity: 0;
     animation: spark-rise linear infinite;
 }
 @keyframes spark-rise {
     0%   { opacity: 0; transform: translate(0, 0) scale(1); }
-    12%  { opacity: 0.9; }
-    70%  { opacity: 0.5; }
+    12%  { opacity: 0.4; }
+    70%  { opacity: 0.22; }
     100% { opacity: 0; transform: translate(var(--drift, 18px), -78vh) scale(0.4); }
 }
 
@@ -153,11 +154,11 @@ code, .font-mono { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
     z-index: 100000;
     pointer-events: none;
     width: 6px; height: 6px;
-    background: var(--ember);
+    background: var(--bone);
     transition: opacity 0.25s ease, width 0.18s ease, height 0.18s ease, background 0.18s ease;
     will-change: transform;
 }
-.hf-dot.is-magnet { width: 4px; height: 4px; background: var(--bone); }
+.hf-dot.is-magnet { width: 4px; height: 4px; background: #ffffff; }
 .hf-dot.is-down { width: 10px; height: 10px; }
 
 /* Square bracket-style ring — a machinist's registration mark, not a bubble */
@@ -172,8 +173,8 @@ code, .font-mono { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
     will-change: transform, width, height;
 }
 .hf-ring.is-magnet {
-    border-color: var(--ember);
-    background: rgba(226, 82, 27, 0.06);
+    border-color: var(--bone);
+    background: rgba(232, 234, 237, 0.06);
 }
 .hf-ring.is-down { border-color: var(--bone); }
 
@@ -237,10 +238,10 @@ code, .font-mono { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
 
 /* Node landing strike — the hammer hits, the steel flares */
 @keyframes node-jiggle {
-    0%   { transform: scale(1);    background: var(--ink); color: var(--ember); }
-    30%  { transform: scale(1.14); background: var(--ember); color: var(--ink); }
+    0%   { transform: scale(1);    background: var(--ink); color: var(--bone); }
+    30%  { transform: scale(1.14); background: var(--bone); color: var(--ink); }
     60%  { transform: scale(0.96); }
-    100% { transform: scale(1);    background: var(--ink); color: var(--ember); }
+    100% { transform: scale(1);    background: var(--ink); color: var(--bone); }
 }
 .node-jiggle { animation: node-jiggle 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
