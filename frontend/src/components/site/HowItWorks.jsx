@@ -21,6 +21,14 @@ const steps = [
   },
 ];
 
+/*
+ * Track geometry. The node is 44px square (h-11 w-11), so its centre is 22px
+ * from the column's left edge. A segment therefore runs from 22px to
+ * (column width + grid gap + 22px) — i.e. exactly one column plus one gap long.
+ */
+const NODE_CENTER = "22px";
+const SEGMENT_WIDTH = "calc(100% + 2.5rem)"; // gap-10 = 2.5rem
+
 const Node = ({ num, index }) => (
   <div
     data-node={index}
@@ -48,21 +56,33 @@ export const HowItWorks = () => {
           className="max-w-3xl"
         />
 
-        {/* Desktop timeline track */}
-        <div ref={trackRef} className="hidden md:block relative h-14 mt-24 mb-6">
-          {/* base line (node1 center -> node3 center) */}
-          <div className="absolute top-1/2 left-[16.66%] right-[16.66%] h-px -translate-y-1/2 bg-[var(--line-strong)]" />
-          {/* animated draw line */}
-          <div className="absolute top-1/2 left-[16.66%] right-[16.66%] h-px -translate-y-1/2 overflow-hidden">
-            <div className={`hf-line-fill h-full w-full bg-ember ${inView ? "drawn" : ""}`} />
-          </div>
-          {/* nodes */}
+        {/*
+          Desktop timeline track. It mirrors the text row's grid exactly — same
+          three columns, same gap — so each node sits on its own step's left
+          edge. Anything positioned by fixed percentages drifts away from the
+          columns as soon as the grid gap is accounted for.
+        */}
+        <div ref={trackRef} className="hidden md:grid grid-cols-3 gap-10 relative h-14 mt-24 mb-6">
           {steps.map((s, i) => (
-            <div
-              key={s.num}
-              className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${16.66 + i * 33.33}%` }}
-            >
+            <div key={s.num} className="relative flex items-center">
+              {/* Line segment reaching from this node's centre to the next one */}
+              {i < steps.length - 1 && (
+                <>
+                  <span
+                    className="absolute top-1/2 h-px -translate-y-1/2 bg-[var(--line-strong)]"
+                    style={{ left: NODE_CENTER, width: SEGMENT_WIDTH }}
+                  />
+                  <span
+                    className="absolute top-1/2 h-px -translate-y-1/2 overflow-hidden"
+                    style={{ left: NODE_CENTER, width: SEGMENT_WIDTH }}
+                  >
+                    <span
+                      className={`hf-line-fill block h-full w-full bg-ember ${inView ? "drawn" : ""}`}
+                      style={{ animationDelay: `${i * 0.6}s` }}
+                    />
+                  </span>
+                </>
+              )}
               <Node num={s.num} index={i} />
             </div>
           ))}

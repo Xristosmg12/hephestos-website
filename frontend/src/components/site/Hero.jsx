@@ -38,12 +38,7 @@ export const Hero = ({ ready }) => {
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-12 items-end">
           {/* ---- Statement ---- */}
           <div className="lg:col-span-8">
-            <motion.p {...rise(0.05)} className="ledger-key flex items-center gap-3">
-              <span className="inline-block h-1.5 w-1.5 bg-ember" />
-              Hephestos — AI Automation Workshop
-            </motion.p>
-
-            <h1 className="mt-7 font-display text-bone text-[clamp(2.6rem,8.2vw,7rem)] leading-[0.93] tracking-[-0.04em]">
+            <h1 className="font-display text-bone text-[clamp(2.6rem,8.2vw,7rem)] leading-[0.93] tracking-[-0.04em]">
               {["We Build", "What Others", "Can't Automate"].map((line, i) => (
                 <span key={line} className="block overflow-hidden">
                   <motion.span
