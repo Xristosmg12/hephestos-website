@@ -20,7 +20,7 @@ export const Navbar = ({ startDelay = 0 }) => {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -45,33 +45,35 @@ export const Navbar = ({ startDelay = 0 }) => {
   return (
     <header
       data-testid="navbar"
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "backdrop-blur-md bg-[#080808]/85 border-b border-white/10"
-          : "bg-transparent border-b border-transparent"
+      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
+        scrolled ? "bg-ink border-b border-[var(--line)]" : "bg-transparent border-b border-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-[72px] flex items-center justify-between">
+      <nav className="max-w-[1400px] mx-auto px-6 lg:px-10 h-[76px] flex items-center justify-between">
         <Link
           to="/"
           data-testid="nav-logo"
-          className="flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-white"
+          className="flex items-center gap-3 font-display text-lg tracking-[-0.02em] text-bone"
         >
-          <img src={`${process.env.PUBLIC_URL}/hs-mark.png`} alt="Hephestos" className="h-8 w-8 object-contain logo-bright" />
+          <img
+            src={`${process.env.PUBLIC_URL}/hs-mark.png`}
+            alt="Hephestos"
+            className="h-7 w-7 object-contain logo-bright"
+          />
           Hephestos
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-9">
           {links.map((l, i) => (
             <motion.a
               key={l.id}
               href={hrefFor(l.id)}
               data-testid={`nav-link-${l.id}`}
-              initial={{ opacity: 0, y: -8 }}
+              initial={{ opacity: 0, y: -6 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: startDelay + i * 0.08, duration: 0.4 }}
-              className={`text-sm font-medium transition-colors ${
-                active === l.id && onHome ? "text-[#3B82F6]" : "text-gray-300 hover:text-white"
+              transition={{ delay: startDelay + i * 0.07, duration: 0.4 }}
+              className={`font-mono text-[11px] uppercase tracking-[0.16em] transition-colors ${
+                active === l.id && onHome ? "text-ember" : "text-ash hover:text-bone"
               }`}
             >
               {l.label}
@@ -80,10 +82,10 @@ export const Navbar = ({ startDelay = 0 }) => {
           <motion.a
             href={hrefFor("contact")}
             data-testid="nav-book-demo"
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: startDelay + links.length * 0.08, duration: 0.4 }}
-            className="rounded-full bg-[#3B82F6] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_20px_rgba(59,130,246,0.35)] hover:scale-105 hover:shadow-[0_0_28px_rgba(59,130,246,0.55)] transition-all"
+            transition={{ delay: startDelay + links.length * 0.07, duration: 0.4 }}
+            className="bg-ember px-5 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-ember-dim"
           >
             Get a Quote
           </motion.a>
@@ -92,8 +94,9 @@ export const Navbar = ({ startDelay = 0 }) => {
         <button
           data-testid="nav-mobile-toggle"
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden text-white p-2"
+          className="md:hidden text-bone p-2"
           aria-label="Toggle menu"
+          aria-expanded={open}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -102,14 +105,14 @@ export const Navbar = ({ startDelay = 0 }) => {
       {open && (
         <div
           data-testid="nav-mobile-menu"
-          className="md:hidden backdrop-blur-xl bg-[#080808]/95 border-b border-white/10 px-6 py-6 flex flex-col gap-4"
+          className="md:hidden bg-ink border-b border-[var(--line)] px-6 pb-8 pt-2 flex flex-col"
         >
           {links.map((l) => (
             <a
               key={l.id}
               href={hrefFor(l.id)}
               onClick={() => setOpen(false)}
-              className="text-base font-medium text-gray-200 hover:text-white"
+              className="rule py-4 font-display text-xl text-bone"
             >
               {l.label}
             </a>
@@ -117,7 +120,7 @@ export const Navbar = ({ startDelay = 0 }) => {
           <a
             href={hrefFor("contact")}
             onClick={() => setOpen(false)}
-            className="rounded-full bg-[#3B82F6] px-5 py-3 text-center text-sm font-semibold text-white"
+            className="mt-6 bg-ember px-5 py-4 text-center font-mono text-xs font-semibold uppercase tracking-[0.16em] text-white"
           >
             Get a Quote
           </a>

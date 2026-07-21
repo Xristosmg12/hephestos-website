@@ -1,23 +1,24 @@
 import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Navbar } from "../components/site/Navbar";
 import { Footer } from "../components/site/Footer";
-import { Reveal } from "../components/site/Reveal";
+import { Reveal, Overline } from "../components/site/Reveal";
 import { Contact } from "../components/site/Contact";
 import { getIndustry } from "../data/industries";
 import { useCountUp, useInViewOnce } from "../hooks/useCountUp";
 
-const ResultMetric = ({ r }) => {
+const ResultMetric = ({ r, index }) => {
   const [ref, inView] = useInViewOnce("-40px");
   const count = useCountUp(r.value, { start: inView });
   return (
-    <div ref={ref} className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 text-center">
-      <div className="font-display text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#3B82F6] to-[#7C3AED] bg-clip-text text-transparent">
+    <div ref={ref} className="rule pt-6">
+      <span className="ledger-key">{String(index + 1).padStart(2, "0")}</span>
+      <div className="mt-3 font-display text-[clamp(2.5rem,6vw,4rem)] leading-[0.9] text-ember tabular-nums">
         {r.zeroText ? r.zeroText : `${r.prefix || ""}${count}${r.suffix || ""}`}
       </div>
-      <p className="mt-3 text-sm text-gray-400">{r.label}</p>
+      <p className="mt-4 text-sm leading-relaxed text-ash">{r.label}</p>
     </div>
   );
 };
@@ -33,89 +34,103 @@ export default function IndustryPage() {
   if (!industry) return <Navigate to="/" replace />;
 
   return (
-    <div className="min-h-screen text-white antialiased">
+    <div className="min-h-screen antialiased">
       <Navbar startDelay={0.05} />
 
       {/* Hero */}
-      <section data-testid="industry-hero" className="relative h-[70vh] min-h-[480px] flex items-end overflow-hidden">
-        <img src={industry.image} alt={industry.name} className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/70 to-[#080808]/30" />
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-8 pb-16">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Link to="/#industries" data-testid="industry-back" className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors mb-6">
-              <ArrowLeft className="h-4 w-4" /> Back to all industries
+      <section
+        data-testid="industry-hero"
+        className="relative h-[68vh] min-h-[460px] flex items-end overflow-hidden"
+      >
+        <img
+          src={industry.image}
+          alt={industry.name}
+          className="absolute inset-0 h-full w-full object-cover grayscale opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40" />
+        <div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 lg:px-10 pb-14">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Link
+              to="/#industries"
+              data-testid="industry-back"
+              className="ledger-key mb-8 inline-flex items-center gap-2 transition-colors hover:text-bone"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" /> All industries
             </Link>
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#3B82F6]">Industry</p>
-            <h1 className="mt-3 font-display text-4xl sm:text-6xl font-bold tracking-tight text-white drop-shadow-lg">
+            <Overline>Industry</Overline>
+            <h1 className="font-display text-[clamp(2.5rem,8vw,6rem)] leading-[0.94] tracking-[-0.04em] text-bone">
               {industry.name}
             </h1>
           </motion.div>
         </div>
       </section>
 
-      <main className="max-w-5xl mx-auto px-6 lg:px-8">
+      <main className="max-w-[1400px] mx-auto px-6 lg:px-10">
         {/* The Problem */}
-        <section className="py-20 lg:py-24">
+        <section className="py-20 lg:py-28">
           <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#7C3AED] mb-4">The Problem</p>
-            <p className="font-display text-2xl sm:text-3xl font-medium leading-snug text-white">
+            <Overline index="01">The Problem</Overline>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="max-w-4xl font-display text-[clamp(1.5rem,3.6vw,2.75rem)] leading-[1.1] tracking-[-0.025em] text-bone">
               {industry.problem}
             </p>
           </Reveal>
         </section>
 
         {/* What We Automate */}
-        <section className="py-16 border-t border-white/10">
+        <section className="py-16 rule-strong">
           <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#3B82F6] mb-8">What We Automate</p>
+            <Overline index="02">What We Automate</Overline>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="mt-8">
             {industry.automations.map((a, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all hover:border-[#3B82F6]/60 hover:shadow-[0_0_24px_rgba(59,130,246,0.2)]">
-                  <span className="mt-0.5 inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/15 border border-[#3B82F6]/40">
-                    <Check className="h-4 w-4 text-[#3B82F6]" />
+              <Reveal key={i} delay={i * 0.06}>
+                <div className="led-row group flex gap-6 sm:gap-10 py-6">
+                  <span className="ledger-key pt-1 transition-colors group-hover:text-ember">
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                  <p className="text-base text-gray-200 leading-relaxed">{a}</p>
+                  <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-bone">{a}</p>
                 </div>
               </Reveal>
             ))}
+            <div className="rule" />
           </div>
         </section>
 
         {/* The Result */}
-        <section className="py-16 border-t border-white/10">
+        <section className="py-16 rule-strong">
           <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#7C3AED] mb-8">The Result</p>
+            <Overline index="03">The Result</Overline>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10">
             {industry.results.map((r, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <ResultMetric r={r} />
+                <ResultMetric r={r} index={i} />
               </Reveal>
             ))}
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-20">
+        <section className="py-20 lg:py-28 rule-strong">
           <Reveal>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 p-10 sm:p-14 text-center">
-              <div className="absolute inset-0 animated-gradient animate-gradient-shift opacity-80" />
-              <div className="absolute left-1/2 top-1/2 w-[400px] h-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#3B82F6]/25 to-[#7C3AED]/25 blur-[90px]" />
-              <div className="relative z-10">
-                <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-tight text-white">
-                  Ready to automate your {industry.name} business?
-                </h2>
-                <a
-                  href="#contact"
-                  data-testid="industry-cta"
-                  className="group mt-8 inline-flex items-center gap-2 rounded-full bg-[#3B82F6] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_24px_rgba(59,130,246,0.4)] hover:scale-105 hover:shadow-[0_0_34px_rgba(59,130,246,0.6)] transition-all"
-                >
-                  Get a Quote
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
+            <div className="flex flex-col items-start gap-8 pt-4 md:flex-row md:items-end md:justify-between">
+              <h2 className="max-w-2xl font-display text-[clamp(1.75rem,4.4vw,3.25rem)] leading-[1.04] tracking-[-0.03em] text-bone">
+                Ready to automate your {industry.name} business?
+              </h2>
+              <a
+                href="#contact"
+                data-testid="industry-cta"
+                className="group inline-flex shrink-0 items-center gap-3 bg-ember px-8 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-ember-dim"
+              >
+                Get a Quote
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
             </div>
           </Reveal>
         </section>

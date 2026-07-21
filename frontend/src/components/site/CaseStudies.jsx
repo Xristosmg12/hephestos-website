@@ -1,4 +1,4 @@
-import { Reveal, TextReveal, Overline } from "./Reveal";
+import { SectionHead, Reveal } from "./Reveal";
 import { useCountUp, useInViewOnce } from "../../hooks/useCountUp";
 
 const cases = [
@@ -6,44 +6,58 @@ const cases = [
   { tag: "E-commerce Store", value: 80, suffix: "%", metricLabel: "faster response time", desc: "Automated order processing and support workflows." },
 ];
 
-const CaseCard = ({ c, index }) => {
+const CaseRow = ({ c, index }) => {
   const [ref, inView] = useInViewOnce("-60px");
   const count = useCountUp(c.value, { start: inView });
   return (
     <div
       ref={ref}
       data-testid={`case-card-${index}`}
-      className="group h-full rounded-r-2xl border-l-2 border-[#3B82F6] bg-white/[0.02] p-8 transition-all hover:bg-white/[0.04] hover:shadow-[0_0_28px_rgba(59,130,246,0.15)]"
+      className="led-row group grid grid-cols-1 md:grid-cols-12 items-start gap-6 md:gap-10 py-12"
     >
-      <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500">{c.tag}</p>
-      <div className="mt-5 flex items-baseline gap-3">
-        <span className="font-display text-5xl font-bold text-[#7C3AED]">
+      <span className="ledger-key md:col-span-3 md:pt-6 transition-colors group-hover:text-ember">
+        {c.tag}
+      </span>
+
+      {/* The figure is the headline — set at display scale */}
+      <div className="md:col-span-4 flex items-baseline gap-1">
+        <span className="font-display text-bone text-[clamp(4rem,11vw,8.5rem)] leading-[0.85] tabular-nums">
           {count}
+        </span>
+        <span className="font-display text-ember text-[clamp(2rem,5vw,4rem)] leading-none">
           {c.suffix}
         </span>
-        <span className="text-sm text-gray-400">{c.metricLabel}</span>
       </div>
-      <p className="mt-5 text-base text-gray-300 leading-relaxed">{c.desc}</p>
+
+      <div className="md:col-span-5 md:pt-6">
+        <p className="ledger-key !text-ash">{c.metricLabel}</p>
+        <p className="mt-3 text-base leading-relaxed text-bone">{c.desc}</p>
+      </div>
     </div>
   );
 };
 
 export const CaseStudies = () => (
-  <section id="results" data-testid="results-section" className="relative py-24 lg:py-32 px-6 lg:px-8">
-    <div className="max-w-6xl mx-auto">
-      <Reveal>
-        <div className="text-center max-w-3xl mx-auto">
-          <Overline>Case Studies</Overline>
-          <TextReveal text="Results" className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white" />
-        </div>
-      </Reveal>
+  <section
+    id="results"
+    data-testid="results-section"
+    className="relative py-24 lg:py-36 px-6 lg:px-10"
+  >
+    <div className="max-w-[1400px] mx-auto">
+      <SectionHead
+        index="05"
+        label="Case Studies"
+        title="What it looks like once it's running."
+        className="max-w-3xl"
+      />
 
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="mt-14">
         {cases.map((c, i) => (
-          <Reveal key={c.tag} delay={i * 0.1}>
-            <CaseCard c={c} index={i} />
+          <Reveal key={c.tag} delay={i * 0.08}>
+            <CaseRow c={c} index={i} />
           </Reveal>
         ))}
+        <div className="rule" />
       </div>
     </div>
   </section>

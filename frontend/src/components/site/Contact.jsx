@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { Loader2, ArrowRight } from "lucide-react";
-import { Reveal } from "./Reveal";
+import { Reveal, Overline } from "./Reveal";
 import { industries } from "../../data/industries";
 
 // Contact submissions are emailed via FormSubmit (no backend/database needed).
@@ -11,6 +11,17 @@ import { industries } from "../../data/industries";
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/hephestos.solutions@gmail.com";
 
 const empty = { full_name: "", company_name: "", industry: "", email: "", automate: "", website: "" };
+
+// Flat, unboxed fields: a hairline underneath, ember when focused.
+const fieldCls =
+  "w-full border-b border-[var(--line-strong)] bg-transparent py-3 text-base text-bone placeholder:text-[var(--ash-dim)] focus:border-ember focus:outline-none transition-colors";
+
+const Field = ({ label, children }) => (
+  <label className="block">
+    <span className="ledger-key">{label}</span>
+    <div className="mt-1.5">{children}</div>
+  </label>
+);
 
 export const Contact = ({ defaultIndustry = "" }) => {
   const [form, setForm] = useState({ ...empty, industry: defaultIndustry });
@@ -50,84 +61,171 @@ export const Contact = ({ defaultIndustry = "" }) => {
     }
   };
 
-  const inputCls =
-    "w-full rounded-lg border border-white/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:border-[#3B82F6] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] transition-colors";
-
   return (
-    <section id="contact" data-testid="contact-section" className="relative py-24 lg:py-32 px-6 lg:px-8 overflow-hidden">
-      <div className="absolute left-1/2 top-1/2 w-[720px] h-[520px] max-w-[95vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#3B82F6]/20 to-[#7C3AED]/20 blur-[130px] pointer-events-none" />
-
-      <div className="relative z-10 max-w-2xl mx-auto">
-        <Reveal>
-          <div className="text-center">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+    <section
+      id="contact"
+      data-testid="contact-section"
+      className="relative py-24 lg:py-36 px-6 lg:px-10"
+    >
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-y-14 lg:gap-x-16">
+        {/* ---- The ask ---- */}
+        <div className="lg:col-span-5">
+          <Reveal>
+            <Overline index="07">Start Here</Overline>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="font-display text-[clamp(2.2rem,5.6vw,4.5rem)] leading-[0.98] tracking-[-0.035em] text-bone">
               Ready to Automate?
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-gray-300">
+          </Reveal>
+          <Reveal delay={0.12}>
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-ash">
               Tell us what's slowing you down. We'll forge the fix.
             </p>
-          </div>
-        </Reveal>
+          </Reveal>
 
-        <Reveal delay={0.1}>
-          <form onSubmit={submit} data-testid="contact-form" className="mt-12 space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input data-testid="contact-full-name" className={inputCls} placeholder="Full Name" value={form.full_name} onChange={update("full_name")} />
-              <input data-testid="contact-company" className={inputCls} placeholder="Company" value={form.company_name} onChange={update("company_name")} />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <select data-testid="contact-industry" className={`${inputCls} appearance-none`} value={form.industry} onChange={update("industry")}>
-                <option value="" disabled className="bg-[#0f0f10]">Industry</option>
-                {industries.map((i) => (
-                  <option key={i.slug} value={i.name} className="bg-[#0f0f10]">{i.name}</option>
-                ))}
-              </select>
-              <input data-testid="contact-email" type="email" className={inputCls} placeholder="Email Address" value={form.email} onChange={update("email")} />
-            </div>
-            <textarea data-testid="contact-automate" rows={4} className={inputCls} placeholder="What do you want to automate?" value={form.automate} onChange={update("automate")} />
+          <Reveal delay={0.2}>
+            <dl className="mt-12 max-w-md">
+              {[
+                ["First step", "Discovery call"],
+                ["Turnaround", "Days, not months"],
+                ["Based", "Cyprus · Global clients"],
+              ].map(([k, v]) => (
+                <div key={k} className="rule flex items-baseline justify-between gap-6 py-3.5">
+                  <dt className="ledger-key">{k}</dt>
+                  <dd className="text-sm text-bone">{v}</dd>
+                </div>
+              ))}
+              <div className="rule flex items-baseline justify-between gap-6 py-3.5">
+                <dt className="ledger-key">Direct</dt>
+                <dd className="text-sm">
+                  <a
+                    href="mailto:hephestos.solutions@gmail.com"
+                    className="wipe text-ember"
+                  >
+                    hephestos.solutions@gmail.com
+                  </a>
+                </dd>
+              </div>
+              <div className="rule" />
+            </dl>
+          </Reveal>
+        </div>
 
-            {/* Honeypot — hidden from users, catches bots */}
-            <input
-              type="text"
-              tabIndex={-1}
-              autoComplete="off"
-              value={form.website}
-              onChange={update("website")}
-              className="absolute left-[-9999px] h-0 w-0 opacity-0"
-              aria-hidden="true"
-            />
+        {/* ---- The form ---- */}
+        <div className="lg:col-span-7">
+          <Reveal delay={0.1}>
+            <form onSubmit={submit} data-testid="contact-form" className="space-y-7">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                <Field label="Full name">
+                  <input
+                    data-testid="contact-full-name"
+                    className={fieldCls}
+                    placeholder="Jane Doe"
+                    value={form.full_name}
+                    onChange={update("full_name")}
+                  />
+                </Field>
+                <Field label="Company">
+                  <input
+                    data-testid="contact-company"
+                    className={fieldCls}
+                    placeholder="Acme Shipping Ltd"
+                    value={form.company_name}
+                    onChange={update("company_name")}
+                  />
+                </Field>
+              </div>
 
-            <label className="flex items-start gap-3 text-xs text-gray-400 leading-relaxed cursor-pointer">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                <Field label="Industry">
+                  <select
+                    data-testid="contact-industry"
+                    className={`${fieldCls} appearance-none`}
+                    value={form.industry}
+                    onChange={update("industry")}
+                  >
+                    <option value="" disabled className="bg-ink-raised">
+                      Select one
+                    </option>
+                    {industries.map((i) => (
+                      <option key={i.slug} value={i.name} className="bg-ink-raised">
+                        {i.name}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
+                <Field label="Email address">
+                  <input
+                    data-testid="contact-email"
+                    type="email"
+                    className={fieldCls}
+                    placeholder="you@company.com"
+                    value={form.email}
+                    onChange={update("email")}
+                  />
+                </Field>
+              </div>
+
+              <Field label="What do you want to automate?">
+                <textarea
+                  data-testid="contact-automate"
+                  rows={4}
+                  className={`${fieldCls} resize-none`}
+                  placeholder="The manual process that's costing you the most time."
+                  value={form.automate}
+                  onChange={update("automate")}
+                />
+              </Field>
+
+              {/* Honeypot — hidden from users, catches bots */}
               <input
-                type="checkbox"
-                data-testid="contact-consent"
-                checked={consent}
-                onChange={(e) => setConsent(e.target.checked)}
-                className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#3B82F6]"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.website}
+                onChange={update("website")}
+                className="absolute left-[-9999px] h-0 w-0 opacity-0"
+                aria-hidden="true"
               />
-              <span>
-                I agree to the processing of my data as described in the{" "}
-                <Link to="/privacy" className="text-[#3B82F6] underline hover:text-[#7C3AED]">
-                  Privacy Policy
-                </Link>{" "}
-                and consent to being contacted.
-              </span>
-            </label>
 
-            <button
-              type="submit"
-              data-testid="contact-submit"
-              disabled={loading}
-              className="group flex w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_24px_rgba(59,130,246,0.4)] hover:scale-[1.02] hover:shadow-[0_0_34px_rgba(59,130,246,0.6)] transition-all disabled:opacity-60 disabled:hover:scale-100"
-            >
-              {loading ? (
-                <><Loader2 className="h-4 w-4 animate-spin" /> Sending...</>
-              ) : (
-                <>Forge the Fix <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" /></>
-              )}
-            </button>
-          </form>
-        </Reveal>
+              <label className="flex items-start gap-3 text-xs leading-relaxed text-ash cursor-pointer">
+                <input
+                  type="checkbox"
+                  data-testid="contact-consent"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#E2521B]"
+                />
+                <span>
+                  I agree to the processing of my data as described in the{" "}
+                  <Link to="/privacy" className="text-ember underline underline-offset-2">
+                    Privacy Policy
+                  </Link>{" "}
+                  and consent to being contacted.
+                </span>
+              </label>
+
+              <button
+                type="submit"
+                data-testid="contact-submit"
+                disabled={loading}
+                className="group flex w-full items-center justify-center gap-3 bg-ember px-8 py-5 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-ember-dim disabled:opacity-60"
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" /> Sending...
+                  </>
+                ) : (
+                  <>
+                    Forge the Fix
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </>
+                )}
+              </button>
+            </form>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

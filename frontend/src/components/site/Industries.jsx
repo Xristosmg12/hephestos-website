@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { Reveal, TextReveal, Overline } from "./Reveal";
+import { SectionHead } from "./Reveal";
 import { industries } from "../../data/industries";
 
 // The cards are only ~340px wide, so request a much smaller image than the
@@ -13,48 +12,54 @@ const cardImg = (url) =>
     .replace(/dpr=\d+/, "dpr=1");
 
 export const Industries = () => (
-  <section id="industries" data-testid="industries-section" className="relative py-24 lg:py-32 px-6 lg:px-8">
-    <div className="max-w-7xl mx-auto">
-      <Reveal>
-        <div className="text-center max-w-3xl mx-auto">
-          <Overline>Industries</Overline>
-          <TextReveal text="Every Industry. One Agency." className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white" />
-          <p className="mt-5 text-base sm:text-lg text-gray-400">
-            If your business has a manual process, we eliminate it.
-          </p>
-        </div>
-      </Reveal>
+  <section
+    id="industries"
+    data-testid="industries-section"
+    className="relative py-24 lg:py-36 px-6 lg:px-10"
+  >
+    <div className="max-w-[1400px] mx-auto">
+      <SectionHead
+        index="02"
+        label="Industries"
+        title="Every industry. One workshop."
+        lead="If your business has a manual process, we eliminate it."
+        className="max-w-3xl"
+      />
 
-      <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--line)]">
         {industries.map((ind, i) => (
           <motion.div
             key={ind.slug}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: (i % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: (i % 4) * 0.06 }}
+            className="bg-ink"
           >
             <Link
               to={`/industries/${ind.slug}`}
               data-testid={`industry-card-${ind.slug}`}
-              className="group relative block h-40 overflow-hidden rounded-2xl border border-white/10 transition-all duration-300 hover:border-[#3B82F6] hover:shadow-[0_0_30px_rgba(59,130,246,0.35)] hover:scale-[1.03]"
+              className="group relative flex h-44 sm:h-56 flex-col justify-end overflow-hidden p-5"
             >
+              {/* Photograph, held back to a texture until you reach for it */}
               <img
                 src={cardImg(ind.image)}
                 alt={ind.name}
                 loading="lazy"
                 decoding="async"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                className="absolute inset-0 h-full w-full object-cover grayscale opacity-30 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-55 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/60 to-[#080808]/20" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-3 text-center">
-                <h3 className="font-display text-base font-bold text-white drop-shadow-lg">
-                  {ind.name}
-                </h3>
-                <span className="mt-1.5 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-[#3B82F6] opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                  Explore <ArrowUpRight className="h-3 w-3" />
-                </span>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/25" />
+
+              <span className="ledger-key relative z-10 transition-colors group-hover:text-ember">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="relative z-10 mt-2 font-display text-lg sm:text-xl leading-tight text-bone">
+                {ind.name}
+              </h3>
+
+              {/* Ember rule wipes across the foot of the frame on hover */}
+              <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-ember transition-transform duration-500 group-hover:scale-x-100" />
             </Link>
           </motion.div>
         ))}

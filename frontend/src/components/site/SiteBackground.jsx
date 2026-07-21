@@ -1,99 +1,53 @@
-import { useEffect, useRef } from "react";
+import { useMemo } from "react";
 
 /*
- * Global animated background — fixed behind the entire site so every section
- * shares the same living aurora + tech-grid ambiance, plus an interactive
- * glow that follows the cursor across the whole page.
- * Purely decorative: pointer-events-none, aria-hidden, respects
- * prefers-reduced-motion (see index.css), and stays static on touch devices.
+ * Global background — the forge floor. A fine machine grid, heat pooling at the
+ * base of the viewport, and sparse embers drifting up from it. No blobs, no
+ * aurora, no cursor-follow glow: the ambiance is structural, not decorative.
+ * Purely presentational: pointer-events-none, aria-hidden, and fully static
+ * under prefers-reduced-motion (see index.css).
  */
+const SPARK_COUNT = 14;
+
 export const SiteBackground = () => {
-  const orbRef = useRef(null);
-  const gridRef = useRef(null);
-
-  useEffect(() => {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    const orb = orbRef.current;
-    const grid = gridRef.current;
-
-    let tx = window.innerWidth / 2;
-    let ty = window.innerHeight / 2;
-    let ox = tx;
-    let oy = ty;
-    let raf;
-    let shown = false;
-
-    const reveal = () => {
-      if (shown) return;
-      shown = true;
-      if (orb) orb.style.opacity = "1";
-      if (grid) grid.style.opacity = "1";
-    };
-    const onMove = (e) => {
-      tx = e.clientX;
-      ty = e.clientY;
-      reveal();
-    };
-    const onLeave = () => {
-      shown = false;
-      if (orb) orb.style.opacity = "0";
-      if (grid) grid.style.opacity = "0";
-    };
-
-    let lastMaskX = -1;
-    let lastMaskY = -1;
-    const loop = () => {
-      ox += (tx - ox) * 0.14;
-      oy += (ty - oy) * 0.14;
-      if (orb) orb.style.transform = `translate(${ox}px, ${oy}px) translate(-50%, -50%)`;
-      // Only recompute the (expensive) mask when the cursor actually moves —
-      // never while the user is just scrolling.
-      if (grid && (tx !== lastMaskX || ty !== lastMaskY)) {
-        const mask = `radial-gradient(240px circle at ${tx}px ${ty}px, #000 0%, rgba(0,0,0,0.35) 46%, transparent 72%)`;
-        grid.style.webkitMaskImage = mask;
-        grid.style.maskImage = mask;
-        lastMaskX = tx;
-        lastMaskY = ty;
-      }
-      raf = requestAnimationFrame(loop);
-    };
-    loop();
-
-    window.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseleave", onLeave);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseleave", onLeave);
-    };
-  }, []);
+  // Fixed per mount so sparks don't re-randomise on every render
+  const sparks = useMemo(
+    () =>
+      Array.from({ length: SPARK_COUNT }, (_, i) => ({
+        id: i,
+        left: `${(i * 7.3 + ((i * 31) % 11)) % 100}%`,
+        delay: `${(i * 1.37) % 9}s`,
+        duration: `${7 + ((i * 3) % 6)}s`,
+        drift: `${((i % 5) - 2) * 14}px`,
+      })),
+    []
+  );
 
   return (
     <div
       aria-hidden="true"
       data-testid="site-background"
-      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-ink"
     >
-      {/* Blue-violet gradient wash (motion comes from the drifting blobs below,
-          so this stays static to avoid a constant full-screen repaint) */}
-      <div className="absolute inset-0 animated-gradient opacity-70" />
+      {/* Machine grid — structure, faint enough to read as texture */}
+      <div className="mill-grid absolute inset-0 opacity-60" />
 
-      {/* Faint schematic grid, fading toward the edges */}
-      <div className="site-bg-grid absolute inset-0" />
+      {/* Heat pooling at the floor of the viewport */}
+      <div className="heat-floor absolute inset-x-0 bottom-0 h-[45vh]" />
 
-      {/* Brighter grid that lights up around the cursor — whole page */}
-      <div ref={gridRef} className="site-igrid absolute inset-0 transition-opacity duration-300" style={{ opacity: 0 }} />
-
-      {/* Drifting aurora blobs */}
-      <div className="site-bg-blob site-bg-blob--blue" />
-      <div className="site-bg-blob site-bg-blob--violet" />
-      <div className="site-bg-blob site-bg-blob--cyan" />
-
-      {/* Colour orb that follows the cursor across the whole site */}
-      <div ref={orbRef} className="site-cursor-orb transition-opacity duration-500" style={{ opacity: 0 }} />
-
-      {/* Depth vignette to keep content the focus */}
-      <div className="site-bg-vignette absolute inset-0" />
+      {/* Embers rising off the forge */}
+      {sparks.map((s) => (
+        <span
+          key={s.id}
+          className="spark"
+          style={{
+            left: s.left,
+            animationDelay: s.delay,
+            animationDuration: s.duration,
+            "--drift": s.drift,
+          }}
+        />
+      ))}
     </div>
   );
 };

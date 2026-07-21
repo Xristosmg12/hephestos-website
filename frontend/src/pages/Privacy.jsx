@@ -3,7 +3,7 @@ import { LegalLayout, Section } from "./LegalLayout";
 export default function Privacy() {
   return (
     <LegalLayout title="Privacy Policy" updated="June 2026">
-      <p className="mt-8 text-sm text-gray-400 leading-relaxed">
+      <p className="mt-8 text-sm leading-relaxed text-ash">
         Hephestos ("we", "us", "our") is a Cyprus-based AI automation agency. This
         Privacy Policy explains how we collect, use, and protect your personal data
         in accordance with the EU General Data Protection Regulation (GDPR) and Cyprus
@@ -14,7 +14,7 @@ export default function Privacy() {
         <p>
           The data controller responsible for your personal data is Hephestos. For any
           privacy-related questions or to exercise your rights, contact us at{" "}
-          <a href="mailto:hephestos.solutions@gmail.com" className="text-[#3B82F6] underline">
+          <a href="mailto:hephestos.solutions@gmail.com" className="text-ember underline underline-offset-2">
             hephestos.solutions@gmail.com
           </a>.
         </p>
@@ -82,7 +82,7 @@ export default function Privacy() {
         </ul>
         <p>
           To exercise any of these rights, email{" "}
-          <a href="mailto:hephestos.solutions@gmail.com" className="text-[#3B82F6] underline">
+          <a href="mailto:hephestos.solutions@gmail.com" className="text-ember underline underline-offset-2">
             hephestos.solutions@gmail.com
           </a>.
         </p>

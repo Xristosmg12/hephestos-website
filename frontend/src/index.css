@@ -1,12 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   FORGE LEDGER — design tokens
+   Hot steel on ink. One accent (ember). Hairlines, never cards.
+   ============================================================ */
+:root {
+    --ink: #0B0B0C;
+    --ink-raised: #121214;
+    --ink-sunk: #070708;
+    --bone: #EDE8DF;
+    --ash: #8F8981;
+    --ash-dim: #5E5A55;
+    --line: rgba(237, 232, 223, 0.13);
+    --line-strong: rgba(237, 232, 223, 0.28);
+    --ember: #E2521B;
+    --ember-dim: #A8330C;
+}
+
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+    scroll-padding-top: 84px;
 }
 
 body {
@@ -14,8 +31,8 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #080808;
-    color: #ffffff;
+    background-color: var(--ink);
+    color: var(--bone);
 }
 
 /* Hide native cursor only once the custom one is actually running */
@@ -23,151 +40,111 @@ body {
     .hf-cursor-on * { cursor: none !important; }
 }
 
-code { font-family: source-code-pro, Menlo, Monaco, monospace; }
+code, .font-mono { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; }
 
-::selection { background: rgba(59, 130, 246, 0.35); color: #fff; }
+::selection { background: var(--ember); color: #fff; }
 
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #080808; }
-::-webkit-scrollbar-thumb { background: #1f1f22; border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: #3B82F6; }
+::-webkit-scrollbar-track { background: var(--ink-sunk); }
+::-webkit-scrollbar-thumb { background: #232326; }
+::-webkit-scrollbar-thumb:hover { background: var(--ember); }
 
-.font-display { font-family: 'Space Grotesk', sans-serif; }
+.font-display {
+    font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
 
 /* Brighten dark-teal brand logos so they read on the near-black background */
-.logo-bright { filter: brightness(1.7) saturate(1.25); }
+.logo-bright { filter: brightness(1.7) saturate(0.15) sepia(0.25); }
 
-/* Hero interactive cursor grid + colour orb */
-.hero-igrid {
-    background-image:
-        linear-gradient(to right, rgba(59, 130, 246, 0.45) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(124, 58, 237, 0.40) 1px, transparent 1px);
-    background-size: 46px 46px;
-    pointer-events: none;
-}
-.hero-orb {
-    width: 480px;
-    height: 480px;
-    max-width: 90vw;
-    border-radius: 9999px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.20) 0%, rgba(124, 58, 237, 0.12) 42%, transparent 70%);
-    filter: blur(14px);
-    will-change: transform;
+/* ===== Ledger primitives ===== */
+
+/* Mono label used for section indices, spec keys, metadata */
+.ledger-key {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ash-dim);
 }
 
-/* Glowing grid background */
-.forge-grid {
-    background-image:
-        linear-gradient(to right, rgba(59, 130, 246, 0.06) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
-    background-size: 46px 46px;
-    mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 35%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 35%, transparent 100%);
-}
+/* Hairline rule — the core structural device, replaces all card borders */
+.rule { border-top: 1px solid var(--line); }
+.rule-strong { border-top: 1px solid var(--line-strong); }
 
-/* Blueprint / schematic grid for about */
-.blueprint-grid {
-    background-image:
-        linear-gradient(to right, rgba(124, 58, 237, 0.08) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(124, 58, 237, 0.08) 1px, transparent 1px),
-        linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-    background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
-}
+/* Milled steel plate: flat, matte, no glass, no blur */
+.plate { background: var(--ink-raised); }
 
-/* Animated blue-violet gradient (contact) */
-.animated-gradient {
-    background: linear-gradient(120deg, #0a0a1a, #10142e, #1a0f2e, #0a1226, #080808);
-    background-size: 300% 300%;
-}
-
-/* ===== Global animated site background ===== */
-.site-bg-grid {
-    background-image:
-        linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(124, 58, 237, 0.045) 1px, transparent 1px);
-    background-size: 62px 62px;
-    mask-image: radial-gradient(ellipse 110% 90% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.35) 55%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 110% 90% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.35) 55%, transparent 100%);
-    opacity: 0.55;
-}
-
-.site-bg-blob {
-    position: absolute;
-    border-radius: 9999px;
-    filter: blur(120px);
-    will-change: transform;
-}
-.site-bg-blob--blue {
-    width: 46vw; height: 46vw; max-width: 640px; max-height: 640px;
-    left: -8vw; top: 2vh;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.45), transparent 68%);
-    animation: bg-drift-a 26s ease-in-out infinite;
-}
-.site-bg-blob--violet {
-    width: 52vw; height: 52vw; max-width: 720px; max-height: 720px;
-    right: -12vw; top: 32vh;
-    background: radial-gradient(circle, rgba(124, 58, 237, 0.42), transparent 68%);
-    animation: bg-drift-b 32s ease-in-out infinite;
-}
-.site-bg-blob--cyan {
-    width: 40vw; height: 40vw; max-width: 560px; max-height: 560px;
-    left: 22vw; bottom: -14vh;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.22), transparent 70%);
-    animation: bg-drift-c 38s ease-in-out infinite;
-}
-@keyframes bg-drift-a {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50%      { transform: translate(7vw, 6vh) scale(1.12); }
-}
-@keyframes bg-drift-b {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50%      { transform: translate(-6vw, -5vh) scale(1.1); }
-}
-@keyframes bg-drift-c {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50%      { transform: translate(-5vw, -8vh) scale(1.15); }
-}
-
-.site-bg-vignette {
-    background: radial-gradient(ellipse 120% 85% at 50% 0%, transparent 42%, rgba(8, 8, 8, 0.55) 100%);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .site-bg-blob { animation: none !important; }
-}
-
-/* Brighter grid revealed around the cursor (whole page) */
-.site-igrid {
-    background-image:
-        linear-gradient(to right, rgba(59, 130, 246, 0.22) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(124, 58, 237, 0.20) 1px, transparent 1px);
-    background-size: 62px 62px;
-}
-/* Colour orb that trails the cursor across the whole site */
-.site-cursor-orb {
-    position: absolute;
-    left: 0; top: 0;
-    width: 460px; height: 460px;
-    max-width: 92vw;
-    border-radius: 9999px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.16) 0%, rgba(124, 58, 237, 0.10) 44%, transparent 70%);
-    filter: blur(20px);
-    will-change: transform;
-}
-
-/* Shimmer sweep for service cards */
-.shimmer-sweep::before {
+/* Ember underline that wipes in on hover */
+.wipe { position: relative; }
+.wipe::after {
     content: '';
     position: absolute;
-    top: 0; left: 0;
-    width: 40%; height: 100%;
-    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.08), transparent);
-    transform: translateX(-150%);
-    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-    pointer-events: none;
+    left: 0; bottom: -3px;
+    height: 1px; width: 100%;
+    background: var(--ember);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.shimmer-sweep:hover::before { transform: translateX(350%); }
+.wipe:hover::after { transform: scaleX(1); }
+
+/* Ledger row: hairline-separated, indents toward the ember on hover */
+.led-row {
+    border-top: 1px solid var(--line);
+    transition: background 0.35s ease, padding-left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.led-row:hover { background: rgba(237, 232, 223, 0.022); }
+@media (min-width: 768px) {
+    .led-row:hover { padding-left: 18px; }
+}
+
+/* Fine machine grid — structural, not a glow */
+.mill-grid {
+    background-image:
+        linear-gradient(to right, rgba(237, 232, 223, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(237, 232, 223, 0.045) 1px, transparent 1px);
+    background-size: 88px 88px;
+}
+
+/* Heat gradient at the very bottom of the page — the forge, not a blob */
+.heat-floor {
+    background: linear-gradient(to top, rgba(226, 82, 27, 0.16) 0%, rgba(226, 82, 27, 0.05) 34%, transparent 72%);
+}
+
+/* Industry ticker */
+.ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 46s linear infinite;
+}
+@keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+.ticker-mask {
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* Sparks drifting up from the forge floor — sparse, physical, not ambient glow */
+.spark {
+    position: absolute;
+    bottom: -10px;
+    width: 2px; height: 2px;
+    border-radius: 9999px;
+    background: var(--ember);
+    opacity: 0;
+    animation: spark-rise linear infinite;
+}
+@keyframes spark-rise {
+    0%   { opacity: 0; transform: translate(0, 0) scale(1); }
+    12%  { opacity: 0.9; }
+    70%  { opacity: 0.5; }
+    100% { opacity: 0; transform: translate(var(--drift, 18px), -78vh) scale(0.4); }
+}
 
 /* ===== Custom pointer cursor: precision dot + magnetic ring ===== */
 .hf-dot {
@@ -175,41 +152,30 @@ code { font-family: source-code-pro, Menlo, Monaco, monospace; }
     top: 0; left: 0;
     z-index: 100000;
     pointer-events: none;
-    width: 7px; height: 7px;
-    border-radius: 9999px;
-    background: #ffffff;
-    box-shadow: 0 0 10px rgba(96, 165, 250, 0.9), 0 0 22px rgba(124, 58, 237, 0.55);
+    width: 6px; height: 6px;
+    background: var(--ember);
     transition: opacity 0.25s ease, width 0.18s ease, height 0.18s ease, background 0.18s ease;
     will-change: transform;
 }
-.hf-dot.is-magnet {
-    width: 5px; height: 5px;
-    background: #60A5FA;
-}
-.hf-dot.is-down { width: 11px; height: 11px; }
+.hf-dot.is-magnet { width: 4px; height: 4px; background: var(--bone); }
+.hf-dot.is-down { width: 10px; height: 10px; }
 
+/* Square bracket-style ring — a machinist's registration mark, not a bubble */
 .hf-ring {
     position: fixed;
     top: 0; left: 0;
     z-index: 99999;
     pointer-events: none;
-    width: 34px; height: 34px;
-    border-radius: 9999px;
-    border: 1.5px solid rgba(147, 197, 253, 0.55);
-    background: rgba(96, 165, 250, 0.06);
-    box-shadow: 0 0 18px rgba(59, 130, 246, 0.25), inset 0 0 12px rgba(124, 58, 237, 0.12);
-    transition: opacity 0.3s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    width: 28px; height: 28px;
+    border: 1px solid var(--line-strong);
+    transition: opacity 0.3s ease, border-color 0.2s ease, background 0.2s ease;
     will-change: transform, width, height;
 }
 .hf-ring.is-magnet {
-    border-color: rgba(124, 58, 237, 0.85);
-    background: rgba(124, 58, 237, 0.10);
-    box-shadow: 0 0 26px rgba(124, 58, 237, 0.40), inset 0 0 18px rgba(96, 165, 250, 0.14);
+    border-color: var(--ember);
+    background: rgba(226, 82, 27, 0.06);
 }
-.hf-ring.is-down {
-    border-color: rgba(255, 255, 255, 0.9);
-    background: rgba(96, 165, 250, 0.14);
-}
+.hf-ring.is-down { border-color: var(--bone); }
 
 /* Text fields keep the native caret so typing never feels broken */
 .hf-cursor-on input, .hf-cursor-on textarea, .hf-cursor-on [contenteditable="true"] {
@@ -219,6 +185,11 @@ code { font-family: source-code-pro, Menlo, Monaco, monospace; }
 @media (pointer: coarse) {
     .hf-dot, .hf-ring { display: none !important; }
     * { cursor: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .spark, .ticker-track { animation: none !important; }
+    html { scroll-behavior: auto; }
 }
 
 /* ===== Robot runner (How It Works) ===== */
@@ -264,13 +235,12 @@ code { font-family: source-code-pro, Menlo, Monaco, monospace; }
 @keyframes arm-wave { 0% { transform: rotate(0); } 40% { transform: rotate(-60deg); } 100% { transform: rotate(0); } }
 @keyframes cursor-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* Node landing jiggle + glow flash */
+/* Node landing strike — the hammer hits, the steel flares */
 @keyframes node-jiggle {
-    0%   { transform: scale(1);    box-shadow: 0 0 22px rgba(59, 130, 246, 0.5); }
-    30%  { transform: scale(1.15); box-shadow: 0 0 38px rgba(59, 130, 246, 1); }
-    60%  { transform: scale(0.95); box-shadow: 0 0 30px rgba(59, 130, 246, 0.7); }
-    80%  { transform: scale(1.05); }
-    100% { transform: scale(1);    box-shadow: 0 0 22px rgba(59, 130, 246, 0.5); }
+    0%   { transform: scale(1);    background: var(--ink); color: var(--ember); }
+    30%  { transform: scale(1.14); background: var(--ember); color: var(--ink); }
+    60%  { transform: scale(0.96); }
+    100% { transform: scale(1);    background: var(--ink); color: var(--ember); }
 }
 .node-jiggle { animation: node-jiggle 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
@@ -282,8 +252,6 @@ code { font-family: source-code-pro, Menlo, Monaco, monospace; }
 }
 .rb-jump { animation: rb-jump 0.45s cubic-bezier(0.3, 0, 0.4, 1); }
 
-
-
 .hf-line-fill {
     animation: hf-line-draw 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     animation-play-state: paused;
@@ -291,51 +259,28 @@ code { font-family: source-code-pro, Menlo, Monaco, monospace; }
 .hf-line-fill.drawn { animation-play-state: running; }
 @keyframes hf-line-draw { from { width: 0%; } to { width: 100%; } }
 
-/* CTA idle pulse glow */
-@keyframes cta-pulse {
-    0%, 100% { box-shadow: 0 0 14px rgba(59, 130, 246, 0.35); }
-    50% { box-shadow: 0 0 26px rgba(59, 130, 246, 0.7); }
-}
-.cta-pulse { animation: cta-pulse 2.6s ease-in-out infinite; }
-
-/* Hero filled button idle shimmer sweep */
-.hero-shimmer { position: relative; overflow: hidden; }
-.hero-shimmer::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -60%;
-    width: 40%; height: 100%;
-    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-    transform: skewX(-20deg);
-    animation: hero-sweep 4s ease-in-out infinite;
-}
-@keyframes hero-sweep {
-    0%, 55% { left: -60%; }
-    80%, 100% { left: 150%; }
-}
-
 @layer base {
     :root {
-        --background: 0 0% 3.1%;
-        --foreground: 0 0% 100%;
-        --card: 0 0% 5%;
-        --card-foreground: 0 0% 100%;
-        --popover: 0 0% 5%;
-        --popover-foreground: 0 0% 100%;
-        --primary: 217 91% 60%;
+        --background: 240 4% 4%;
+        --foreground: 40 20% 90%;
+        --card: 240 4% 7%;
+        --card-foreground: 40 20% 90%;
+        --popover: 240 4% 7%;
+        --popover-foreground: 40 20% 90%;
+        --primary: 16 79% 50%;
         --primary-foreground: 0 0% 100%;
-        --secondary: 0 0% 10%;
-        --secondary-foreground: 0 0% 100%;
-        --muted: 0 0% 12%;
-        --muted-foreground: 0 0% 63%;
-        --accent: 258 90% 66%;
+        --secondary: 240 4% 10%;
+        --secondary-foreground: 40 20% 90%;
+        --muted: 240 4% 12%;
+        --muted-foreground: 35 6% 56%;
+        --accent: 16 79% 50%;
         --accent-foreground: 0 0% 100%;
         --destructive: 0 84% 60%;
         --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 15%;
-        --input: 0 0% 15%;
-        --ring: 217 91% 60%;
-        --radius: 0.75rem;
+        --border: 40 12% 18%;
+        --input: 40 12% 18%;
+        --ring: 16 79% 50%;
+        --radius: 0rem;
     }
 }
 

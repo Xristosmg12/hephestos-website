@@ -9,50 +9,78 @@ const links = [
 ];
 
 export const Footer = () => (
-  <footer data-testid="footer" className="relative overflow-hidden border-t border-[#3B82F6]/25 px-6 lg:px-8 py-14">
-    {/* Scan line animation */}
-    <div className="pointer-events-none absolute inset-0 opacity-40">
-      <div className="absolute left-0 right-0 h-24 animate-scanline bg-gradient-to-b from-transparent via-[#3B82F6]/10 to-transparent" />
-    </div>
-
-    <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
-      <div>
-        <Link to="/" className="flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-white">
-          <img src={`${process.env.PUBLIC_URL}/hs-mark.png`} alt="Hephestos" className="h-8 w-8 object-contain logo-bright" />
+  <footer
+    data-testid="footer"
+    className="relative border-t border-[var(--line-strong)] px-6 lg:px-10 pt-16 pb-10"
+  >
+    <div className="max-w-[1400px] mx-auto">
+      {/* Wordmark set large — the stamp on the finished piece */}
+      <Link to="/" className="flex items-center gap-4">
+        <img
+          src={`${process.env.PUBLIC_URL}/hs-mark.png`}
+          alt="Hephestos"
+          className="h-10 w-10 object-contain logo-bright"
+        />
+        <span className="font-display text-[clamp(2.5rem,9vw,6rem)] leading-none tracking-[-0.04em] text-bone">
           Hephestos
-        </Link>
-        <p className="mt-3 text-sm text-gray-500 max-w-xs">
-          We Build What Others Can't Automate. We don't sell software — we forge
-          solutions to your exact problem.
-        </p>
-      </div>
+        </span>
+      </Link>
 
-      <div className="flex flex-wrap gap-x-6 gap-y-3 md:justify-center">
-        {links.map((l) => (
-          <a key={l.href} href={l.href} className="text-sm text-gray-400 hover:text-white transition-colors">
-            {l.label}
+      <div className="mt-14 grid grid-cols-1 md:grid-cols-12 gap-y-10 md:gap-x-10">
+        <div className="md:col-span-5 rule pt-6">
+          <p className="ledger-key">What we do</p>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-ash">
+            We Build What Others Can't Automate. We don't sell software — we forge
+            solutions to your exact problem.
+          </p>
+        </div>
+
+        <nav className="md:col-span-3 rule pt-6">
+          <p className="ledger-key">Index</p>
+          <div className="mt-4 flex flex-col gap-2.5">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="w-fit text-sm text-ash transition-colors hover:text-bone"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+        </nav>
+
+        <div className="md:col-span-4 rule pt-6">
+          <p className="ledger-key">Contact</p>
+          <a
+            href="mailto:hephestos.solutions@gmail.com"
+            className="wipe mt-4 block w-fit text-sm text-ember"
+          >
+            hephestos.solutions@gmail.com
           </a>
-        ))}
-      </div>
-
-      <div className="md:text-right">
-        <a href="mailto:hephestos.solutions@gmail.com" className="text-sm text-[#3B82F6] hover:text-[#7C3AED] transition-colors">
-          hephestos.solutions@gmail.com
-        </a>
-        <p className="mt-1 text-sm text-gray-400">Cyprus · Global Clients</p>
-        <div className="mt-3 flex gap-4 md:justify-end">
-          <Link to="/privacy" data-testid="footer-privacy" className="text-xs text-gray-500 hover:text-white transition-colors">
-            Privacy Policy
-          </Link>
-          <Link to="/terms" data-testid="footer-terms" className="text-xs text-gray-500 hover:text-white transition-colors">
-            Terms of Service
-          </Link>
+          <p className="mt-2 text-sm text-ash">Cyprus · Global Clients</p>
+          <div className="mt-5 flex gap-5">
+            <Link
+              to="/privacy"
+              data-testid="footer-privacy"
+              className="ledger-key transition-colors hover:text-bone"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms"
+              data-testid="footer-terms"
+              className="ledger-key transition-colors hover:text-bone"
+            >
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div className="relative z-10 max-w-7xl mx-auto mt-10 pt-8 border-t border-white/5">
-      <p className="text-[11px] text-gray-600 text-center">© 2025 Hephestos. All rights reserved. · Cyprus</p>
+      <div className="rule mt-14 pt-6">
+        <p className="ledger-key">© 2025 Hephestos · All rights reserved · Cyprus</p>
+      </div>
     </div>
   </footer>
 );

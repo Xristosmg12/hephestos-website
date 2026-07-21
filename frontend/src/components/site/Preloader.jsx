@@ -1,37 +1,37 @@
 import { motion, AnimatePresence } from "framer-motion";
 
+/* Cold open: the wordmark sits on the ink, an ember rule strikes across, lifts away. */
 export const Preloader = ({ done }) => (
   <AnimatePresence>
     {!done && (
       <motion.div
         data-testid="preloader"
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-[#080808]"
+        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-ink"
         initial={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.4 }}
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ y: -120, opacity: 0 }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ y: -40, opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="flex items-center gap-3"
         >
-          <motion.img
+          <img
             src={`${process.env.PUBLIC_URL}/hs-mark.png`}
             alt="Hephestos"
-            className="h-10 w-10 object-contain logo-bright"
-            animate={{
-              filter: [
-                "brightness(1.6) saturate(1.2) drop-shadow(0 0 6px rgba(59,130,246,0.3))",
-                "brightness(1.7) saturate(1.25) drop-shadow(0 0 24px rgba(59,130,246,0.85))",
-                "brightness(1.6) saturate(1.2) drop-shadow(0 0 6px rgba(59,130,246,0.3))",
-              ],
-            }}
-            transition={{ duration: 1.1, repeat: Infinity }}
+            className="h-9 w-9 object-contain logo-bright"
           />
-          <span className="font-display text-3xl font-bold tracking-tight text-white">Hephestos</span>
+          <span className="font-display text-3xl tracking-[-0.03em] text-bone">Hephestos</span>
         </motion.div>
+
+        <motion.div
+          className="mt-6 h-px w-40 origin-left bg-ember"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        />
       </motion.div>
     )}
   </AnimatePresence>

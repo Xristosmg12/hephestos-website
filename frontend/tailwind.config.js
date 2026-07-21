@@ -9,7 +9,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Space Grotesk"', 'Inter', 'sans-serif'],
+        display: ['"Bricolage Grotesque"', 'Inter', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'Menlo', 'monospace'],
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -50,8 +51,11 @@ module.exports = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        blue: { brand: '#3B82F6' },
-        violet: { brand: '#7C3AED' },
+        /* Forge Ledger palette — one accent, no gradients */
+        ink: { DEFAULT: '#0B0B0C', raised: '#121214', sunk: '#070708' },
+        bone: '#EDE8DF',
+        ash: { DEFAULT: '#8F8981', dim: '#5E5A55' },
+        ember: { DEFAULT: '#E2521B', dim: '#A8330C' },
       },
       keyframes: {
         'accordion-down': { from: { height: '0' }, to: { height: 'var(--radix-accordion-content-height)' } },

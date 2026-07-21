@@ -3,7 +3,7 @@ import { LegalLayout, Section } from "./LegalLayout";
 export default function Terms() {
   return (
     <LegalLayout title="Terms of Service" updated="June 2026">
-      <p className="mt-8 text-sm text-gray-400 leading-relaxed">
+      <p className="mt-8 text-sm leading-relaxed text-ash">
         These Terms of Service ("Terms") govern your use of the Hephestos website and
         your engagement with our services. By using this website or contacting us, you
         agree to these Terms.
@@ -66,7 +66,7 @@ export default function Terms() {
       <Section title="8. Contact">
         <p>
           Questions about these Terms? Email{" "}
-          <a href="mailto:hephestos.solutions@gmail.com" className="text-[#3B82F6] underline">
+          <a href="mailto:hephestos.solutions@gmail.com" className="text-ember underline underline-offset-2">
             hephestos.solutions@gmail.com
           </a>.
         </p>
