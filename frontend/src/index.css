@@ -18,9 +18,9 @@ body {
     color: #ffffff;
 }
 
-/* Hide native cursor on pointer-fine devices */
+/* Hide native cursor only once the custom one is actually running */
 @media (pointer: fine) {
-    * { cursor: none !important; }
+    .hf-cursor-on * { cursor: none !important; }
 }
 
 code { font-family: source-code-pro, Menlo, Monaco, monospace; }
@@ -169,46 +169,55 @@ code { font-family: source-code-pro, Menlo, Monaco, monospace; }
 }
 .shimmer-sweep:hover::before { transform: translateX(350%); }
 
-/* ===== Custom pointer cursor ===== */
-.hf-arrow {
+/* ===== Custom pointer cursor: precision dot + magnetic ring ===== */
+.hf-dot {
     position: fixed;
     top: 0; left: 0;
     z-index: 100000;
     pointer-events: none;
-    filter: drop-shadow(0 2px 5px rgba(59, 130, 246, 0.55));
-    transition: opacity 0.3s ease;
+    width: 7px; height: 7px;
+    border-radius: 9999px;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(96, 165, 250, 0.9), 0 0 22px rgba(124, 58, 237, 0.55);
+    transition: opacity 0.25s ease, width 0.18s ease, height 0.18s ease, background 0.18s ease;
     will-change: transform;
 }
-.hf-arrow svg {
-    display: block;
-    transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
-    transform-origin: 1px 1px;
+.hf-dot.is-magnet {
+    width: 5px; height: 5px;
+    background: #60A5FA;
 }
-.hf-arrow.is-hover svg { transform: scale(1.35); }
+.hf-dot.is-down { width: 11px; height: 11px; }
 
 .hf-ring {
     position: fixed;
     top: 0; left: 0;
     z-index: 99999;
     pointer-events: none;
-    width: 40px; height: 40px;
+    width: 34px; height: 34px;
     border-radius: 9999px;
-    background: radial-gradient(circle, rgba(96, 165, 250, 0.30) 0%, rgba(124, 58, 237, 0.14) 55%, transparent 72%);
-    filter: blur(4px);
-    transition: opacity 0.4s ease, width 0.22s ease, height 0.22s ease, background 0.22s ease;
-    will-change: transform;
+    border: 1.5px solid rgba(147, 197, 253, 0.55);
+    background: rgba(96, 165, 250, 0.06);
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.25), inset 0 0 12px rgba(124, 58, 237, 0.12);
+    transition: opacity 0.3s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform, width, height;
 }
-.hf-ring.is-hover {
-    width: 66px; height: 66px;
-    background: radial-gradient(circle, rgba(124, 58, 237, 0.34) 0%, rgba(96, 165, 250, 0.16) 55%, transparent 72%);
+.hf-ring.is-magnet {
+    border-color: rgba(124, 58, 237, 0.85);
+    background: rgba(124, 58, 237, 0.10);
+    box-shadow: 0 0 26px rgba(124, 58, 237, 0.40), inset 0 0 18px rgba(96, 165, 250, 0.14);
 }
 .hf-ring.is-down {
-    width: 26px; height: 26px;
-    background: radial-gradient(circle, rgba(96, 165, 250, 0.50) 0%, rgba(124, 58, 237, 0.22) 55%, transparent 72%);
+    border-color: rgba(255, 255, 255, 0.9);
+    background: rgba(96, 165, 250, 0.14);
+}
+
+/* Text fields keep the native caret so typing never feels broken */
+.hf-cursor-on input, .hf-cursor-on textarea, .hf-cursor-on [contenteditable="true"] {
+    cursor: text !important;
 }
 
 @media (pointer: coarse) {
-    .hf-arrow, .hf-ring { display: none !important; }
+    .hf-dot, .hf-ring { display: none !important; }
     * { cursor: auto !important; }
 }
 
